@@ -1,0 +1,23 @@
+#mainNavbar {
+  height: 100px; }
+
+#rememberBox {
+  vertical-align: middle;
+  margin: 0;
+  margin-bottom: 1px; }
+
+#navbar {
+  float: right; }
+
+.naslov a {
+  display: inline-block;
+  float: left;
+  color: #E2EBF5; }
+
+.naslov a:hover {
+  text-decoration: none; }
+
+.naslov h2, h3 {
+  margin-top: 5px; }
+
+/*# sourceMappingURL=navigation_register.css.map */

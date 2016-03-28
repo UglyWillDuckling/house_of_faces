@@ -1,0 +1,18 @@
+
+{% extends 'templates/empty.twig' %}
+
+{% block title %}activation{% endblock %}
+
+    {% block customCss %}
+        <link rel="stylesheet" href="{{ strap.baseUrl }}/views/css/activation/style.css">
+    {% endblock %}
+
+    {% block main_content %}
+        <div class="col-sm-8">
+
+            <p>
+                A confirmation email has been sent to your address. Click the link inside it to activate your account. Click <a href="{{ strap.baseUrl }}/auth/emailResend?email=">here</a> to resend the email. 
+            </p>
+
+        </div>
+    {% endblock %}

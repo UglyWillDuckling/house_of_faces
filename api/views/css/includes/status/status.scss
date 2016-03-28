@@ -1,0 +1,59 @@
+
+  .statusArea{
+        margin: 2px 3px 0px 45px;
+        border-radius: 2px; 
+        font-size: 0.85em;  
+
+   }  
+
+   .userStatus{
+      padding: 5px;
+   }
+
+   #userStatus{
+
+         width: 100%;
+         height: auto;
+         resize: none;
+         overflow: auto;
+         min-height: 48px;
+   } 
+
+   .statusBtn {
+    margin-top: 5px;
+    border-radius: 4px;
+    color: #112C5F;
+  }
+
+   .addStatus{
+
+    background-color: #fff;
+    padding: 5px;
+   }
+
+   .addStatus .userImage{
+
+     width: $imageWidth + 10px !important;
+     float: left;
+   }
+
+   #fajlBtn{
+      display: none;
+   }
+
+   .updateStatsBtn{
+    float: right;
+   }
+
+   .statPics{
+    margin-left: 50px;
+    margin-bottom: 5px;
+    padding: 1px;
+    margin-right: 3px;
+
+   }
+
+   .statPic{
+
+      width: 100%;
+   }

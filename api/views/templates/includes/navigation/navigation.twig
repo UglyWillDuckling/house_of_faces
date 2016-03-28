@@ -1,0 +1,99 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" id="mainNavbar">
+  <div class="container nav_container">
+  
+  {% if not strap.isLoggedIn %}
+    <div class="naslov">
+        <a href="{{ strap.urlZa('home') }}">          
+          <h2>House of faces<small><i class="subTitle"> dont be shy, we don't bite</i></small></h2>     
+        </a>
+    </div>
+  {% endif %}
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>   
+    <div id="navbar" class="collapse navbar-collapse">
+       {% if strap.isLoggedIn %}
+        <div class="nav navbar-nav navbar-left">
+          <ul class="nav navbar-nav">
+            <li id="face_item">
+              <a href="{{ strap.urlZa('home') }}">
+              <button type="button" id="faceButton" name="button">HOUSE</button></a>
+            </li>
+            <li id="search_item">
+              <input type="text" class="form-control" name="search" id="search" placeholder="nadite prijatelje">
+
+              <ul id="userList" class="userList noneDisplay"></ul>
+
+              <button type="button" id="searchButton" class="btn" data-target="{{ strap.urlZa('search') }}">search</button>
+            </li>
+          </ul>
+        </div>
+       {% endif  %}
+      <div class="nav navbar-nav navbar-right">
+              {% if not strap.isLoggedIn %}
+                <ul class="nav navbar-nav login">
+                  <li>
+                    <form role=form class="form-inline"  action="{{ strap.baseUrl }}/auth/login" method="POST">
+                        <div class="form-group">
+                            <label for="email">email: </label>
+                            <input class="form-control" placeholder="enter email" type="text" id="username" name="email" />
+                        </div>
+                        <div class="form-group">
+                          <label for="password">password</label>
+                          <input type="password" class="form-control" name="password" id="password" placeholder="enter password" />
+                        </div>
+                        
+                        <input type="checkbox" name="remember" id="rememberBox">
+                        <label for="rememberBox" class="mellow v_align_middle">remember my login?</label>
+                        
+                        <input class="form-control" type="hidden" id="csrfToken" name="csrfToken" value="{{ strap.csrfToken }}">
+                        <button type="submit" class="btn btn-default">sign in</button>   
+                    </form>                                                  
+                  </li>
+                </ul>
+              {% else %}
+                <ul class="nav navbar-nav member_list">
+                    <li><a href="{{ strap.baseUrl }}/profile?id={{ user.id }}" class="member_link">profil</a></li>
+                    <li><a href="{{ strap.baseUrl }}/auth/logout" class="member_link">logout</a></li>
+                    <li class="requestItem">
+                        <a id="friendAnchor" href="#" class="member_link">friendRequests
+                        {% if numberOfRequests %}
+                          <div class="littleNumber requestNumber">{{ numberOfRequests }}</div>
+                        {% endif %}
+                        </a>
+
+                        <div id="requests" class="noneDisplay">
+                          {% for r in requests %}
+                            <div class="littleUser">
+                              <img src="{{ strap.baseUrl }}/public/images/default/defaultUser.png" alt="" class="userImage">
+                              <div class="userInfo">
+                                <div class="userName">
+                                  {% if r.nickname %} {{ r.nickname }}
+                                  {% else %} {{ r.username }}
+                                  {% endif %}
+                                </div>            
+                              <div class="da-ne" data-id="{{ r.request_id }}">
+                                <button class="acceptRequest requestBtn">
+                                  <div class="overlay"></div>
+                                  <i class="glyphicon glyphicon-ok"></i>accept</button>
+                                <button class="declineRequest requestBtn">
+                                  <div class="overlay"></div>
+                                  <i class="glyphicon glyphicon-remove"></i>decline</button>
+                              </div>
+                            </div>
+                          {% endfor %}                         
+                        </div>
+                    </li>
+                    
+                </ul>
+              {% endif %}
+<!--drop down menu tek treba napraviti-->
+        </div>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>

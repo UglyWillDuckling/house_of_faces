@@ -1,0 +1,121 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}profile{% endblock %}
+
+{% block js %}       
+        <script src="{{ strap.baseUrl }}/api/javascript/functions/like.js"></script>    
+        <script src="{{ strap.baseUrl }}/api/javascript/functions/statusUpdate.js"></script> 
+        <script src="{{ strap.baseUrl }}/api/javascript/functions/comments&amp;posts.js"></script>  
+        <script src="{{ strap.baseUrl }}/api/javascript/functions/profile/controls.js"></script>  
+             
+        <script src="{{ strap.baseUrl }}/api/javascript/profile/profile.js"></script>   
+
+        {% if strap.loggedIn %}
+<!--javascript za profil trenutnog korisnika--> 
+
+        {% endif %}  
+
+{% endblock %}
+        
+    {% block customCss %}
+    <link href="{{ strap.baseUrl }}/api/views/css/includes/navigation/navigation_member.css" rel="stylesheet">
+    <link href="{{ strap.baseUrl }}/api/views/css/profile/profile.css" rel="stylesheet">
+    {% endblock %}
+{% block main_content %}
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8">
+        
+        <div class="topContainer">
+            <div class="profilePicture">
+                <img class="thumbnail" src="
+                {% if(user.userImage) %}{{ user.userImage }}
+                {% else %}{{ strap.baseUrl }}/public/images/default/defaultUser.png 
+                {% endif %}" alt="userImage">
+            </div>
+            <div class="backgroundContainer">
+              <h2 class="bigUserName">
+                  {{ user.name }} {{ user.last_name }}
+              </h2>      
+            </div>
+            <div class="controlContainer">
+                <ul class="controlList">
+                    <li><a href="#" class="controlLink" data-link="timeline">Timeline</a></li>
+                    <li><a href="#" class="controlLink" data-link="about">O meni</a></li>
+                    <li><a href="#" class="controlLink" data-link="friends">Prijatelji</a></li>
+                    <li><a href="#" class="controlLink" data-link="pictures">Pictures</a></li>
+                  
+                </ul>
+            </div>
+        </div>
+
+        <div class="contentContainer">
+
+            <input type="hidden" name="csrfToken" id="csrfToken" value="{{ strap.csrfToken }}">
+            <input type="hidden" name="" id="user_id" value="{{ user.id }}">
+
+            <div id="timelineContainer" class="content" data-link="timeline">
+                {% include 'parts/statusUpdate.twig' %}
+                {% include 'parts/posts.twig' %}
+            </div>
+
+            <div id="aboutMeContainer" class="content noneDisplay" data-link="about">
+                about
+            </div>
+
+            <div id="FriendsContainer" class="content noneDisplay" data-link="friends">
+                friendOfMine
+            </div>
+
+            <div id="PicturesContainer" class="content noneDisplay" data-link="pictures">
+                {% for pic in userPics %}
+                    <div class="userThumb" data-picid="{{ pic.picture_id }}">
+                        <img src="{{ strap.baseUrl }}/{{ pic.path }}" alt="userpicture-{{ pic.path }}">
+                    </div>
+                    
+                {% endfor %}
+
+                <div id="imgCarrousel" class="noneDisplay">
+                    <div class="pictureContainer">
+                        <div class="userPicture">
+                          <img id="currentImage" src="{{ strap.baseUrl }}/public/images/default/defaultUser.png" alt="user">  
+                        </div>
+                        <div class="imageDesc">
+                            {{ pic.description }}
+                        </div>
+    <!--komentari za sliku-->
+                        <div class="comments">
+                            <h4>Comments:</h4>
+
+                            <div id="pictureComments" data-contentid="">
+                                
+                            </div>
+
+                            <div class="komentisi">
+
+                                <div class="opinion">
+                                  <div class="userImage">
+                                    <img  src="
+                                    {% if member.picture %}{{ member.picture }}{% else %}{{ strap.baseUrl }}/public/images/default/defaultUser.png
+                                    {% endif %}" 
+                                    alt="user_picture">
+                                  </div>
+                                  <div class="commentInfo">
+                                    <textarea data-alias="#pictureComments" data-contentid="" id="pictureCommentArea" class="opinionArea" placeholder="komentiraj..."></textarea>
+                                  </div>
+                                </div>
+
+                            </div>
+                        </div> 
+    <!--\komentari za sliku-->                      
+                    </div>
+
+                    <span id="arrowLeft" class=" interactive arrow arrowLeft glyphicon glyphicon-chevron-left"></span>
+                    <span id="arrowRight" class="interactive pictureIcon arrow arrowRight glyphicon glyphicon-chevron-right"></span>
+
+                    <span id="closeCarrousel" class="interactive closeCarr">&times;</span>    
+                </div> 
+            </div>
+        </div>
+    </div>
+{% endblock %}

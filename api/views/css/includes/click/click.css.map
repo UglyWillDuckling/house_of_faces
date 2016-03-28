@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEI,SACA;EACI,QAAQ,EAAE,QAAQ;EAClB,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EAEZ,GAAG,EAAC,CAAC;EACL,IAAI,EAAC,CAAC;EACN,OAAO,EAAE,CAAC",
+"sources": ["click.scss"],
+"names": [],
+"file": "click.css"
+}

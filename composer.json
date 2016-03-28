@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Tricky\\": "api/Library"
+        }
+  },
+  "require": {
+        "twig/twig": "~1.0",
+        "ircmaxell/random-lib": "~1.1",
+        "alexgarrett/violin": "2.*", 
+        "swiftmailer/swiftmailer": "~5.2"
+    }
+}             

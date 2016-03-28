@@ -1,0 +1,246 @@
+   
+    $imageWidth : 30px;
+    $replyImageWidth: $imageWidth - 10px;
+    $commentH: 40px;
+    $replyH: 40px;
+
+    .posts{
+
+        margin-top: 15px;
+        font-size: 0.85em;
+    }
+    .post{
+
+        margin-bottom: 15px;
+        background-color: #ffffff;
+        padding: 15px;
+    }
+
+    .userInfo{
+
+        position: relative;
+        margin-bottom: 10px;
+    }
+
+    .userImage{
+        display: inline-block;
+        width:  $imageWidth !important;
+        overflow: none;
+        vertical-align: top;
+    }
+
+    .userImage img{
+        width: 100%;
+    }
+
+    .post_content{
+        margin-bottom: 12px;
+        font-size: 1.1em;      
+    }
+
+    .post_content > .tekst{
+
+        font-size:1.1em;
+        padding-bottom: 5px; 
+    }
+
+    .interact a {
+
+        color: grey;
+        font-weight: 800;
+        display: inline-block;
+        padding-right: 15px;
+    }
+
+    .opinion .userImage{
+        float: left;
+
+    }
+
+
+
+    .post_content > .interact {
+        padding : 5px 0 3px 0;
+        border-width: 1px 0 1px 0;
+        border-color: #D6D6D6;
+        border-style: solid;
+    }
+
+    .userName{
+        display: inline-block;
+        font-size: 1.1em;
+        font-weight: 800;
+        color: #39517F;
+        padding-left: 2px;
+    }
+
+    .comments{
+
+    } 
+    .commentInfo{
+        margin-left: 37px;
+        font-size: 0.95em;
+    }
+
+    .comment_content{
+        margin-left: 5px;
+        display: inline-block;
+    }
+
+    .commentInteraction a {
+        display: inline-block;
+        padding-right: 5px;
+    }
+
+    .opinion{
+        font-size: 0.95em;
+       // height: $commentH;
+       margin-bottom: 12px;
+       clear: both;
+    }
+    .komentisi{
+        clear: both;
+        margin-top: 5px;
+    }
+
+    .komentisi textarea{
+        width: 355px;
+        height: $commentH;
+        min-height:$commentH; 
+        resize: none;
+    }
+
+
+    .replies{
+        margin-left: $imageWidth;
+        margin-top: 6px;
+    }
+    .replies .userImage{
+        width: $replyImageWidth !important;
+
+    }
+
+    .reply{   
+        padding: 5px 5px 0 5px;  
+    }
+
+    .reply .commentInfo{
+        margin-left: $replyImageWidth + 5px;
+    }
+
+    .postBtn{
+
+        height: 20px;
+
+        font-weight: 600;
+        font-size: 0.8em; 
+
+        padding: 1px 8px 1px 8px;
+
+        border-radius: 6px;
+        border: 1px solid rgb(220, 220, 220);
+       
+        color: rgb(102, 102, 102);
+        background-color: #fff;
+    }
+
+    .postBtn > span {
+        vertical-align: middle;
+        margin-top: 1px;
+    }
+
+    .likeIcon {
+        width: 12px;  
+        vertical-align: middle;
+        margin-bottom: 1px;  
+    }
+
+    .commentInteraction .likeBtn, .replyBtn{
+
+       border:none;
+       background: #ECECEC;
+       color: #505094;
+    }
+
+    .commentInteraction .likeBtn:focus, .replyBtn:focus{
+        border:none;
+        outline: none;
+    }
+
+    
+
+    /* sadrzaj nakon like buttona */
+
+    .noLike > span::after{
+        content: "like";
+    }
+
+    .liked > span::after{
+
+       content: "you like this";     
+    }
+
+    .liked .likeIcon{
+        content:url("http://localhost/house_of_faces/public/images/icons/love.png");
+        
+    }
+
+    .noLike > .likeIcon{
+       content:url("http://localhost/house_of_faces/public/images/icons/like.png");
+    }
+
+    /*  Replies  */
+
+    .reply{
+        min-height: $replyH;
+    }
+
+    .replyAreaContainer{
+        margin-left: 23px;
+        //min-height: 27px;
+        overflow: hidden;
+    }
+
+    .replyArea{
+        height: 100%;
+        width: 55%;
+        font-size: 0.9em;
+        resize: none;
+        min-height: 28px;
+    }
+
+    /***      /***
+        Images
+    /***      ***/
+   
+    .postPic{
+        width: 19%;
+        padding-right: 6px;
+    }
+
+    .statPicContainer{
+        position: relative;
+    
+        display: inline-block;;
+        width: 10%;
+        margin-right: 2px;
+    }
+
+    .statPicContainer:hover > .removeStatPic{
+        display: inline-block;
+    }
+
+    .removeStatPic{
+        display: none;
+
+        position: absolute;
+        font-size: 0.75em;
+        right: 0;
+        top: 0;
+        border: none;
+
+        background: rgba(10, 10, 23, 0.55);
+        color: #FFFFFF;
+    }
+
+

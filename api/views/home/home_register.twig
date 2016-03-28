@@ -1,0 +1,117 @@
+    
+{% extends 'templates/default.twig' %}
+
+    {% block title %}home{% endblock %}
+         
+    {% block customCss %}
+    <link href="{{ strap.baseUrl }}/api/views/css/home/home_register.css" rel="stylesheet">
+    {% endblock %}
+
+
+    {% block js %}
+        <script src="{{ strap.baseUrl }}/api/javascript/functions/ajax/ajax.js"></script>
+        <script src="{{ strap.baseUrl }}/api/javascript/functions/register/checkAvailable.js"></script>
+        <script src="{{ strap.baseUrl }}/api/javascript/functions/register/uploadUserImage.js"></script>
+        <script src="{{ strap.baseUrl }}/api/javascript/register/register.js"></script>    
+    {% endblock %}
+
+    {% import "templates/macros/forms.twig" as form %}
+
+    {% block main_content %}
+        <div class="col-sm-2">
+        </div>
+
+        <div class="col-sm-8">
+            <div class="mainContainer">
+        <h2 class="welcome">Postanite član</h2>
+
+        <form class="form" enctype="multipart/form-data" role="form" action="{{ strap.baseUrl }}/auth/register" method="POST">
+                  
+            {{ form.formItem(
+             'name',
+             'text', 
+             'name',
+             'required', 
+             '',
+             'req',
+             'najmanje 3 slova',
+             errors
+            )}}
+
+            {{ form.formItem(
+              'lastName',
+              'text',
+              'prezime', 
+              'required', 
+              '',
+              'req', 
+              'najmanje 3 slova',
+              errors
+            )}} 
+
+            {{ form.formItem(
+              'email',
+              'email',
+              'email', 
+              'required', 
+              '',
+              'req', 
+              '',
+              errors
+            )}} 
+
+            {{ form.formItem(
+              'nickname',
+              'text',
+              'nadimak',
+              '',
+              '',
+              '',
+              '',
+              errors
+            )}}
+
+            {{ form.formItem(
+            'password',
+             'password',
+             'password',
+             'required',
+             '',
+             'req', 
+             '*lozinka mora sadrzavati najmanje jedno veliko, jedno malo slovo i jedan broj, minimum šest znakova',
+             errors
+            ) }}
+
+             {{ form.formItem(
+             'password_confirm',
+             'password',
+             'potvrdi lozinku',
+             'required',
+             '',
+             'req',
+             '',
+             errors
+            ) }}
+
+            <div class="form-group">
+              <input type="hidden" name="csrfToken" value="{{ strap.csrfToken }}">
+            </div>
+            <div class="AddImageContainer">
+              <label for"#">Dodaj svoju sliku:</label>
+              <br>
+                <div id="slikaKorisnikaWrapper">
+                  <img id="slikaKorisnika" src="{{ strap.baseUrl }}/public/images/default/defaultUser.png" alt="userImage">
+                </div>
+              <button class="imgBtn" id="imgBtn">izaberite sliku</button>
+            </div>   
+
+            <input class="form-control" type="file" name="image" id="fajl">
+
+            <label for="quote">najdrazi citat:</label>
+            <div class="form-group">                
+                <textarea class="form-control" id="quote" name="quote" id="" placeholder="vas omiljeni citat"></textarea>
+            </div>   
+
+            <button type="submit" class="btn btn-default">register</button>
+        </form>
+    {% endblock %}

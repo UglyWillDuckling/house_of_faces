@@ -1,0 +1,22 @@
+    
+
+
+    {% macro formItem(name, type, label, groupClass, inputClass, req, help, e) %}
+
+        <div class="form-group {{ groupClass }}{% if e.first(name) %} has-error{% endif %}">
+            <label for="{{ name }}">{{ label }}:</label>
+            <input 
+             {% if req %}required="true"{% endif %}
+              
+             type="{{ type|default('text') }}" 
+             class="form-control {{ inputClass }}" 
+             id="{{ name }}"
+             name="{{ name }}"
+             >
+             <span class="reqSymbol">*</span>
+             <span class="help-block">
+            {% if e.first(name) %} {{ e.first(name) }} {% else %} {{ help }} {% endif %}
+            </span>            
+        </div> 
+              
+    {% endmacro %}

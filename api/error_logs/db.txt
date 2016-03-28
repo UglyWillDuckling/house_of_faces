@@ -1,0 +1,8 @@
+time: 1458750877 line: 144, in file C:\wamp\www\house_of_faces\api\Library\Database\DB.php, with message: SQLSTATE[42S22]: Column not found: 1054 Champ 'reader_id' inconnu dans where clause
+time: 1458763354 line: 92, in file C:\wamp\www\house_of_faces\api\Library\Database\DB.php, with message: SQLSTATE[42S22]: Column not found: 1054 Champ 'users.user_id' inconnu dans field list
+time: 1458763401 line: 92, in file C:\wamp\www\house_of_faces\api\Library\Database\DB.php, with message: SQLSTATE[42S22]: Column not found: 1054 Champ 'users.user_id' inconnu dans field list
+time: 1458938849 line: 92, in file C:\wamp\www\house_of_faces\api\Library\Database\DB.php, with message: SQLSTATE[42000]: Syntax error or access violation: 1064 Erreur de syntaxe près de 'accepted = '0'' à la ligne 1
+time: 1458938861 line: 92, in file C:\wamp\www\house_of_faces\api\Library\Database\DB.php, with message: SQLSTATE[42000]: Syntax error or access violation: 1064 Erreur de syntaxe près de 'accepted = '0'' à la ligne 1
+time: 1458938863 line: 92, in file C:\wamp\www\house_of_faces\api\Library\Database\DB.php, with message: SQLSTATE[42000]: Syntax error or access violation: 1064 Erreur de syntaxe près de 'accepted = '0'' à la ligne 1
+time: 1458940076 line: 252, in file C:\wamp\www\house_of_faces\api\Library\Database\DB.php, with message: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+time: 1458940142 line: 252, in file C:\wamp\www\house_of_faces\api\Library\Database\DB.php, with message: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens

@@ -1,0 +1,171 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}home{% endblock %}
+
+{% block js %}
+        <script src="{{ strap.baseUrl }}/api/javascript/functions/comments&amp;posts.js"></script>    
+        <script src="{{ strap.baseUrl }}/api/javascript/home_member.js"></script>    
+        <script src="{{ strap.baseUrl }}/api/javascript/functions/like.js"></script>    
+        <script src="{{ strap.baseUrl }}/api/javascript/functions/statusUpdate.js"></script>    
+        <script src="{{ strap.baseUrl }}/api/javascript/functions/scale/resize.js"></script>    
+        <script src="{{ strap.baseUrl }}/api/javascript/functions/ajax/ajax.js"></script>    
+        <script src="{{ strap.baseUrl }}/api/javascript/functions/interact/friendRequests.js"></script>    
+    {% endblock %}
+        
+    {% block customCss %}
+    <link href="{{ strap.baseUrl }}/api/views/css/includes/navigation/navigation_member.css" rel="stylesheet">
+    <link href="{{ strap.baseUrl }}/api/views/css/home/home_member.css" rel="stylesheet">
+    {% endblock %}
+
+{% block main_content %}
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-2">
+        <aside class="sideContainer">
+          <a href="{{ strap.urlZa('profil.messages') }}">
+             <div class="sideItem">
+               <i class="glyphicon glyphicon-envelope msgIcon"></i>
+               <span class="title">messages</span>
+
+               {% if numberOfMessages %}<div class="littleNumber">{{ numberOfMessages }}</div>{% endif %}
+             </div>
+          </a>
+
+          <a href="{{ strap.urlZa('profil.friendRequests') }}">
+            <div class="sideItem">
+              <img src="{{ strap.baseUrl }}/public/images/default/friends.png" class="icon" alt="icon">
+              <span class="title">friend requests</span>
+               {% if numberOfRequests %}<div class="littleNumber requestNumber">{{ numberOfRequests }}</div>{% endif %}
+            </div>
+        </a>
+        </aside>
+    </div>
+    <div class="col-sm-6">
+        <div class="mainContainer">
+            <input type="hidden" name="csrfToken" id="csrfToken" value="{{ strap.csrfToken }}">
+
+            {% include 'parts/statusUpdate.twig' %}
+
+            <div class="posts" id="posts">
+            {% for post in posts %}           
+               <div class="post">   
+                     <div class="userInfo">
+                       <div class="userImage">                  
+                         <img src=" 
+                            {% if post.userPic %}{{ post.userPic }}{% else %} {{ strap.baseUrl }}/public/images/default/defaultUser.png{% endif %}
+                         " alt="userImage">                  
+                       </div>
+                       <div class="userName">
+                        <a href="{{ strap.baseUrl }}/profile?id={{ post.userId }}">{{ post.name }}</a>       
+                       </div>
+                     </div>                                      
+                   <div class="post_content">
+                        <div class="postPics">
+                          {% for pic in post.pics %}
+                            <img class="postPic" src="{{ strap.baseUrl ~ pic.path }}" alt="picPath">
+                          {% endfor %}
+<!--prikaz slika za post-->                          
+                        </div>
+                       <div class="tekst">
+                           {{ post.tekst }}
+                       </div>
+                       <div class="interact">
+                           <button class="postBtn commentBtn" data-postId="{{ post.ownId }}" onclick="focusOnText(this)"><span>comment</span>
+                           </button>
+                           <button class="postBtn likeBtn {% if (post.liked) %}liked{% else %}noLike{% endif %}" data-contentId="{{ post.ownId }}">
+                              <img class="likeIcon" src="{{ strap.baseUrl }}/public/images/icons/like.png" alt="iconL">  
+                           <span></span>
+                          </button>
+                       </div>
+                   </div>
+                   <div class="comments" data-post="{{ post.ownId }}">
+                        {% for opinion in post.comments %}
+                            <div class="opinion">
+                              <div class="userImage">
+                                <img src="{% if opinion.userImage %}{{ opinion.userImage }}
+                                          {% else %} {{ strap.defaultUser }}  
+                                          {% endif %}
+                                " alt="user image">
+                              </div>
+                              <div class="commentInfo">
+                                 <div class="userName">
+                                  <a href="{{ strap.baseUrl }}/profile?id={{ opinion.userId }}">{{ opinion.username }}</a>
+                                 </div>             
+                                 <div class="comment_content">                                 
+                                   <div class="tekst">
+                                    {{ opinion.tekst }}
+                                   </div>
+                                 </div>                              
+                                 <div class="commentInteraction">
+<!--gumb za like nekog komentara-->
+                                    <button class="likeBtn {% if opinion.liked %}liked{% else %}noLike{% endif %}" data-contentId="{{ opinion.ownId }}">
+                                      <span></span>
+                                    </button> 
+                                    <button class="replyBtn" data-contentid="{{ opinion.ownId }}">reply</button> 
+                                    <span><small class="small">{{ opinion.creation }}</small></span>
+                                 </div>
+                              </div>
+                              <div class="replies" data-contentid="{{ opinion.ownId }}">
+                                {% for reply in opinion.replies %}
+                                    <div class="reply">
+                                      <div class="userImage">
+                                        <img src="{% if reply.userImage %}{{ strap.baseUrl }}{{ reply.userImage }}
+                                                  {% else %}{{ strap.baseUrl }}/public/images/default/defaultUser.png
+                                                  {% endif %}" 
+                                      alt="user image">
+                                      </div>
+                                      <div class="commentInfo">
+                                        <div class="userName">
+                                        <a href="{{ strap.baseUrl }}/profile?id={{ opinion.userId }}">{{ reply.username }}</a>       
+                                        </div>             
+                                        <div class="comment_content">                                 
+                                          <div class="tekst">
+                                            {{ reply.tekst }}
+                                          </div>
+                                        </div>                              
+                                        <div class="commentInteraction">
+           <!--gumb za like nekog reply-ja-->
+                                           <button href="#" class="likeBtn  {% if reply.liked %}liked{% else %}noLike{% endif %}" data-contentId="{{ reply.ownId }}">
+                                             <span></span>
+                                           </button>
+                                           <button class="replyBtn" data-contentId="{{ opinion.ownId }}">reply</button>
+   <!--doradi prikaz vremena-->           <span><small class="small">prije 2 sata</small></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                {% endfor %}
+                            <!--reply na komentar-->    
+                                <div class="reply hide">
+                                  <div class="userImage">
+                                    <img src="{% if user.userImage %}{{ strap.baseUrl }}{{ user.userImage }}
+                                              {% else %}{{ strap.baseUrl }}/public/images/default/defaultUser.png
+                                              {% endif %}" 
+                                      alt="user image">
+                                  </div>
+                                  <div class="replyAreaContainer">                                    
+                                    <textarea class="replyArea" data-contentid="{{ opinion.ownId }}" name="" id="" cols="30" rows="2" placeholder="reply"></textarea>
+                                  </div>                                 
+                                </div>                              
+                              </div>
+                            </div>
+                        {% endfor %} 
+                        <div class="komentisi">
+                          <div class="opinion">
+                            <div class="userImage">
+                              <img src="
+                              {% if user.picture %}{{ user.picture }}{% else %}{{ strap.baseUrl }}/public/images/default/defaultUser.png
+                              {% endif %}" 
+                              alt="user_picture">
+                            </div>
+                            <div class="commentInfo">
+                              <textarea data-postId="{{ post.ownId }}" class="opinionArea" cols="60" rows="5" placeholder="komentiraj..."></textarea>
+                            </div>
+                          </div>
+                        </div>
+                   </div> 
+               </div> 
+            {% endfor %}
+            </div>
+        </div>
+    </div>   
+{% endblock %} 

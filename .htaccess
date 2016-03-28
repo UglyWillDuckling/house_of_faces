@@ -1,0 +1,10 @@
+php_flag display_errors on
+php_value error_reporting 9999
+
+RewriteEngine On
+RewriteBase /house_of_faces/
+
+RewriteCond %{REQUEST_FILENAME}  !-f
+RewriteCond %{REQUEST_FILENAME}  !-l
+
+RewriteRule ^(.+)$ start/index.php?url=$1 [QSA,L]

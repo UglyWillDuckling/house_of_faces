@@ -1,0 +1,116 @@
+@import '../includes/posts/posts';
+@import '../includes/click/click';
+@import 'aside/aside';
+
+  
+    .mainContainer{
+        background-color: #E6E6E6;
+        padding: 10px;
+    }
+
+   .statusArea{
+        margin: 2px 3px 0px 45px;
+        border-radius: 2px; 
+        font-size: 0.85em;  
+
+   }  
+
+   .userStatus{
+      padding: 5px;
+   }
+
+   #userStatus{
+
+         width: 100%;
+         height: auto;
+         resize: none;
+         overflow: auto;
+         min-height: 48px;
+   } 
+
+   .statusBtn {
+    margin-top: 5px;
+    border-radius: 4px;
+    color: #112C5F;
+  }
+
+   .addStatus{
+
+    background-color: #fff;
+    padding: 5px;
+   }
+
+   .addStatus .userImage{
+
+     width: $imageWidth + 10px !important;
+     float: left;
+   }
+
+   #fajlBtn{
+      display: none;
+   }
+
+   .updateStatsBtn{
+    float: right;
+   }
+
+   .mainContainer{
+      border-radius: 3px;
+   }
+
+   .statPics{
+    margin-left: 50px;
+    margin-bottom: 5px;
+    padding: 1px;
+    margin-right: 3px;
+
+   }
+
+   .statPic{
+
+      width: 100%;
+   }
+
+   #username{
+    display: none;
+   }
+
+   #search_item{
+    position: relative;
+    z-index: 10;
+   }
+
+   .userList{
+      position:absolute;
+
+      left: 0;
+      top: 45px;
+      width: 85%;
+
+      color: black;
+      background-color: #fff;
+      border: 1px solid #B7AFAF;
+      box-shadow: 1px 1px 5px #888888;
+
+      padding: 5px !important;
+
+      li{
+        list-style-type: none;
+        margin-bottom: 3px;
+      }
+
+      .userName{
+        display: inline-block;
+      }
+
+      .userInfo{
+        display: inline-block;
+      }
+
+      .userImage{
+        width: 62px !important;
+      }
+   }
+
+
+

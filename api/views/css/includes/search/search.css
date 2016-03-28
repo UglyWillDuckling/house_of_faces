@@ -1,0 +1,25 @@
+#search_item {
+  position: relative;
+  z-index: 10; }
+
+.userList {
+  position: absolute;
+  left: 0;
+  top: 45px;
+  width: 85%;
+  color: black;
+  background-color: #fff;
+  border: 1px solid #B7AFAF;
+  box-shadow: 1px 1px 5px #888888;
+  padding: 5px !important; }
+  .userList li {
+    list-style-type: none;
+    margin-bottom: 3px; }
+  .userList .userName {
+    display: inline-block; }
+  .userList .userInfo {
+    display: inline-block; }
+  .userList .userImage {
+    width: 62px !important; }
+
+/*# sourceMappingURL=search.css.map */

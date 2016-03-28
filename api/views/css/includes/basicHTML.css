@@ -1,0 +1,23 @@
+/** modifikacije izgleda osnovnih html elemenata **/
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #fff; }
+
+label {
+  color: white; }
+
+label:hover {
+  cursor: pointer; }
+
+button {
+  border: none; }
+
+ul {
+  padding: 0; }
+
+button {
+  background: none; }
+
+/** modifikacije izgleda osnovnih html elemenata **/
+
+/*# sourceMappingURL=basicHTML.css.map */

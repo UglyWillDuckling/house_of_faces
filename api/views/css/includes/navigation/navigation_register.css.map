@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEI,WACA;EACA,MAAM,EAJU,KAAK;;AAQrB,YACA;EACA,cAAc,EAAE,MAAM;EACtB,MAAM,EAAC,CAAC;EACR,aAAa,EAAE,GAAG;;AAGlB,OACA;EACA,KAAK,EAAE,KAAK;;AAGZ,SACA;EACA,OAAO,EAAE,YAAY;EACrB,KAAK,EAAE,IAAI;EACX,KAAK,EAAE,OAAO;;AAGd,eAAgB;EACZ,eAAe,EAAE,IAAI;;AAGzB,cACA;EACA,UAAU,EAAE,GAAG",
+"sources": ["navigation_register.scss"],
+"names": [],
+"file": "navigation_register.css"
+}

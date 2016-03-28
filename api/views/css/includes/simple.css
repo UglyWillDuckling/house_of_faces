@@ -1,0 +1,24 @@
+/** jednostavne klase za neke manje promjene prikaza elementa **/
+.mellow {
+  opacity: 0.8;
+  font-size: 0.8em; }
+
+.v_align_middle {
+  vertical-align: middle; }
+
+.subTitle {
+  opacity: 0.5;
+  color: white; }
+
+.hide {
+  display: none; }
+
+.show {
+  display: block; }
+
+.inline-block {
+  display: inline-block; }
+
+/** jednostavne klase za neke manje promjene prikaza elementa **/
+
+/*# sourceMappingURL=simple.css.map */

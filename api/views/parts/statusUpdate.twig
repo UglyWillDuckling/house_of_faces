@@ -1,0 +1,31 @@
+    <div class="addStatus">
+        <div id="statPics" class="statPics">
+
+        </div>         
+        <hr>
+        <div class="userStatus">
+          <span class="noneDisplay" id="username">{{ user.name }}</span>
+          <div class="userImage">
+            <img id="userImage" src="
+            {% if user.picture %}{{ user.picture }}{% else %}{{ strap.baseUrl }}/public/images/default/defaultUser.png
+            {% endif %}
+            " alt="userImage">
+            </div>
+            <div class="statusArea">
+                <div class="statusImages">
+                </div>
+                <textarea name="" placeholder="share your feeeeels." id="userStatus" ></textarea>
+                <div class="statWarning"></div>
+            </div> 
+        </div>                          
+        <hr>
+        <div class="statusBtns">
+
+            <form enctype="multipart/form-data" class="inline-block"> 
+              <button class="statusBtn" id="photoButton">add photo</button>
+              <input type="file" name="fajl" id="fajlBtn" >
+            </form>
+           
+            <button class="statusBtn updateStatsBtn" id="statusBtn">update Status</button>
+        </div>
+    </div>

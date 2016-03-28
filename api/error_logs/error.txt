@@ -1,0 +1,21 @@
+SQLSTATE[42000]: Syntax error or access violation: 1064 Erreur de syntaxe près de 'WHERE id = '43'' à la ligne 1
+SQLSTATE[42000]: Syntax error or access violation: 1064 Erreur de syntaxe près de 'WHERE id = '43'' à la ligne 1
+SQLSTATE[42000]: Syntax error or access violation: 1064 Erreur de syntaxe près de 'WHERE id = '43'' à la ligne 1
+SQLSTATE[42000]: Syntax error or access violation: 1064 Erreur de syntaxe près de 'WHERE id = '43'' à la ligne 1
+SQLSTATE[42000]: Syntax error or access violation: 1064 Erreur de syntaxe près de 'WHERE id = '43'' à la ligne 1
+SQLSTATE[42000]: Syntax error or access violation: 1064 Erreur de syntaxe près de 'WHERE id = '43'' à la ligne 1
+SQLSTATE[42000]: Syntax error or access violation: 1064 Erreur de syntaxe près de 'WHERE id = '43'' à la ligne 1
+SQLSTATE[42000]: Syntax error or access violation: 1064 Erreur de syntaxe près de 'WHERE id = '43'' à la ligne 1
+SQLSTATE[42000]: Syntax error or access violation: 1064 Erreur de syntaxe près de 'WHERE id = '43'' à la ligne 1
+SQLSTATE[42000]: Syntax error or access violation: 1064 Erreur de syntaxe près de 'WHERE id = '43'' à la ligne 1
+SQLSTATE[42000]: Syntax error or access violation: 1064 Erreur de syntaxe près de 'WHERE id = '43'' à la ligne 1
+time: 1458940456 line: 48, in file C:\wamp\www\house_of_faces\api\routes\interact\request.php, with message: error while updating the request table.
+time: 1459014547 line: 215, in file C:\wamp\www\house_of_faces\vendor\twig\twig\lib\Twig\Loader\Filesystem.php, with message: Unable to find template "templates/includes/parts/statusUpdate" (looked into: C:\wamp\www\house_of_faces/api/views) in "home/home_member.twig" at line 46.
+time: 1459014551 line: 215, in file C:\wamp\www\house_of_faces\vendor\twig\twig\lib\Twig\Loader\Filesystem.php, with message: Unable to find template "templates/includes/parts/statusUpdate" (looked into: C:\wamp\www\house_of_faces/api/views) in "home/home_member.twig" at line 46.
+time: 1459014570 line: 215, in file C:\wamp\www\house_of_faces\vendor\twig\twig\lib\Twig\Loader\Filesystem.php, with message: Unable to find template "templates/includes/parts/statusUpdate" (looked into: C:\wamp\www\house_of_faces/api/views) in "home/home_member.twig" at line 46.
+time: 1459014580 line: 215, in file C:\wamp\www\house_of_faces\vendor\twig\twig\lib\Twig\Loader\Filesystem.php, with message: Unable to find template "templates/includes/parts/statusUpdate" (looked into: C:\wamp\www\house_of_faces/api/views) in "home/home_member.twig" at line 46.
+time: 1459014666 line: 215, in file C:\wamp\www\house_of_faces\vendor\twig\twig\lib\Twig\Loader\Filesystem.php, with message: Unable to find template "fdsf" (looked into: C:\wamp\www\house_of_faces/api/views) in "home/home_member.twig" at line 46.
+time: 1459014878 line: 256, in file C:\wamp\www\house_of_faces\vendor\twig\twig\lib\Twig\Loader\Filesystem.php, with message: Looks like you try to load a template outside configured directories (../parts/updateStatus.twig) in "home/home_member.twig" at line 46.
+time: 1459014885 line: 215, in file C:\wamp\www\house_of_faces\vendor\twig\twig\lib\Twig\Loader\Filesystem.php, with message: Unable to find template "parts/updateStatus.twig" (looked into: C:\wamp\www\house_of_faces/api/views) in "home/home_member.twig" at line 46.
+time: 1459014896 line: 215, in file C:\wamp\www\house_of_faces\vendor\twig\twig\lib\Twig\Loader\Filesystem.php, with message: Unable to find template "parts/updateStatus.twig" (looked into: C:\wamp\www\house_of_faces/api/views) in "home/home_member.twig" at line 46.
+time: 1459014907 line: 215, in file C:\wamp\www\house_of_faces\vendor\twig\twig\lib\Twig\Loader\Filesystem.php, with message: Unable to find template "header.html" (looked into: C:\wamp\www\house_of_faces/api/views) in "home/home_member.twig" at line 46.

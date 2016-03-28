@@ -1,0 +1,354 @@
+.posts {
+  margin-top: 15px;
+  font-size: 0.85em; }
+
+.post {
+  margin-bottom: 15px;
+  background-color: #ffffff;
+  padding: 15px; }
+
+.userInfo {
+  position: relative;
+  margin-bottom: 10px; }
+
+.userImage {
+  display: inline-block;
+  width: 30px !important;
+  overflow: none;
+  vertical-align: top; }
+
+.userImage img {
+  width: 100%; }
+
+.post_content {
+  margin-bottom: 12px;
+  font-size: 1.1em; }
+
+.post_content > .tekst {
+  font-size: 1.1em;
+  padding-bottom: 5px; }
+
+.interact a {
+  color: grey;
+  font-weight: 800;
+  display: inline-block;
+  padding-right: 15px; }
+
+.opinion .userImage {
+  float: left; }
+
+.post_content > .interact {
+  padding: 5px 0 3px 0;
+  border-width: 1px 0 1px 0;
+  border-color: #D6D6D6;
+  border-style: solid; }
+
+.userName {
+  display: inline-block;
+  font-size: 1.1em;
+  font-weight: 800;
+  color: #39517F;
+  padding-left: 2px; }
+
+.commentInfo {
+  margin-left: 37px;
+  font-size: 0.95em; }
+
+.comment_content {
+  margin-left: 5px;
+  display: inline-block; }
+
+.commentInteraction a {
+  display: inline-block;
+  padding-right: 5px; }
+
+.opinion {
+  font-size: 0.95em;
+  margin-bottom: 12px;
+  clear: both; }
+
+.komentisi {
+  clear: both;
+  margin-top: 5px; }
+
+.komentisi textarea {
+  width: 355px;
+  height: 40px;
+  min-height: 40px;
+  resize: none; }
+
+.replies {
+  margin-left: 30px;
+  margin-top: 6px; }
+
+.replies .userImage {
+  width: 20px !important; }
+
+.reply {
+  padding: 5px 5px 0 5px; }
+
+.reply .commentInfo {
+  margin-left: 25px; }
+
+.postBtn {
+  height: 20px;
+  font-weight: 600;
+  font-size: 0.8em;
+  padding: 1px 8px 1px 8px;
+  border-radius: 6px;
+  border: 1px solid gainsboro;
+  color: #666666;
+  background-color: #fff; }
+
+.postBtn > span {
+  vertical-align: middle;
+  margin-top: 1px; }
+
+.likeIcon {
+  width: 12px;
+  vertical-align: middle;
+  margin-bottom: 1px; }
+
+.commentInteraction .likeBtn, .replyBtn {
+  border: none;
+  background: #ECECEC;
+  color: #505094; }
+
+.commentInteraction .likeBtn:focus, .replyBtn:focus {
+  border: none;
+  outline: none; }
+
+/* sadrzaj nakon like buttona */
+.noLike > span::after {
+  content: "like"; }
+
+.liked > span::after {
+  content: "you like this"; }
+
+.liked .likeIcon {
+  content: url("http://localhost/house_of_faces/public/images/icons/love.png"); }
+
+.noLike > .likeIcon {
+  content: url("http://localhost/house_of_faces/public/images/icons/like.png"); }
+
+/*  Replies  */
+.reply {
+  min-height: 40px; }
+
+.replyAreaContainer {
+  margin-left: 23px;
+  overflow: hidden; }
+
+.replyArea {
+  height: 100%;
+  width: 55%;
+  font-size: 0.9em;
+  resize: none;
+  min-height: 28px; }
+
+/***      /***
+    Images
+/***      ***/
+.postPic {
+  width: 19%;
+  padding-right: 6px; }
+
+.statPicContainer {
+  position: relative;
+  display: inline-block;
+  width: 10%;
+  margin-right: 2px; }
+
+.statPicContainer:hover > .removeStatPic {
+  display: inline-block; }
+
+.removeStatPic {
+  display: none;
+  position: absolute;
+  font-size: 0.75em;
+  right: 0;
+  top: 0;
+  border: none;
+  background: rgba(10, 10, 23, 0.55);
+  color: #FFFFFF; }
+
+.statusArea {
+  margin: 2px 3px 0px 45px;
+  border-radius: 2px;
+  font-size: 0.85em; }
+
+.userStatus {
+  padding: 5px; }
+
+#userStatus {
+  width: 100%;
+  height: auto;
+  resize: none;
+  overflow: auto;
+  min-height: 48px; }
+
+.statusBtn {
+  margin-top: 5px;
+  border-radius: 4px;
+  color: #112C5F; }
+
+.addStatus {
+  background-color: #fff;
+  padding: 5px; }
+
+.addStatus .userImage {
+  width: 40px !important;
+  float: left; }
+
+#fajlBtn {
+  display: none; }
+
+.updateStatsBtn {
+  float: right; }
+
+.statPics {
+  margin-left: 50px;
+  margin-bottom: 5px;
+  padding: 1px;
+  margin-right: 3px; }
+
+.statPic {
+  width: 100%; }
+
+#search_item {
+  position: relative;
+  z-index: 10; }
+
+.userList {
+  position: absolute;
+  left: 0;
+  top: 45px;
+  width: 85%;
+  color: black;
+  background-color: #fff;
+  border: 1px solid #B7AFAF;
+  box-shadow: 1px 1px 5px #888888;
+  padding: 5px !important; }
+  .userList li {
+    list-style-type: none;
+    margin-bottom: 3px; }
+  .userList .userName {
+    display: inline-block; }
+  .userList .userInfo {
+    display: inline-block; }
+  .userList .userImage {
+    width: 62px !important; }
+
+#clickDiv {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9; }
+
+.topContainer {
+  height: 210px;
+  border: 1px solid #C3C2C2; }
+
+.profilePicture {
+  width: 150px;
+  float: left;
+  top: 20px;
+  margin-top: 41px;
+  margin-left: 20px; }
+  .profilePicture img {
+    width: 100%; }
+
+.backgroundContainer {
+  background: #232937;
+  color: white;
+  height: 75%;
+  vertical-align: bottom; }
+
+.bigUserName {
+  display: inline-block;
+  margin-top: 15%;
+  margin-left: 10px; }
+
+.controlContainer {
+  height: 25%; }
+
+.controlList {
+  margin: 0;
+  margin-top: 17px;
+  height: 100%; }
+  .controlList li {
+    display: inline-block;
+    height: 100%;
+    font-size: 1.3em;
+    padding-left: 40px; }
+
+.contentContainer {
+  padding: 10px;
+  border: 1px solid #C3C2C2;
+  margin-top: 10px;
+  background: #E6E6E6; }
+
+.userThumb {
+  width: 19.5%;
+  display: inline-block;
+  margin-bottom: 6px; }
+  .userThumb img {
+    width: 100%; }
+
+#imgCarrousel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  background: black;
+  width: 100%;
+  height: 100%; }
+  #imgCarrousel .pictureContainer {
+    width: 80%;
+    height: 600px;
+    margin-top: 100px;
+    margin-left: 200px; }
+  #imgCarrousel .comments {
+    display: inline-block;
+    width: 25em;
+    min-height: 46em;
+    background: white;
+    padding: 10px;
+    margin-left: 10px; }
+    #imgCarrousel .comments h4 {
+      font-weight: 600;
+      color: #5A5A5A; }
+  #imgCarrousel .userPicture {
+    width: 55em;
+    height: 46em;
+    display: inline-block;
+    float: left; }
+    #imgCarrousel .userPicture img {
+      width: 100%;
+      height: 100%; }
+  #imgCarrousel .interactive:hover {
+    cursor: pointer;
+    color: white; }
+  #imgCarrousel .closeCarr {
+    position: absolute;
+    font-size: 3em;
+    color: #A0A0A0; }
+  #imgCarrousel #closeCarrousel {
+    top: 0;
+    right: 25px; }
+  #imgCarrousel .opinion textarea {
+    width: 90%; }
+  #imgCarrousel .arrow {
+    position: absolute;
+    top: 16em;
+    z-index: 10;
+    color: #A0A0A0;
+    font-size: 1.7em; }
+  #imgCarrousel .arrowLeft {
+    left: 25px; }
+  #imgCarrousel .arrowRight {
+    right: 25px; }
+
+/*# sourceMappingURL=profile.css.map */

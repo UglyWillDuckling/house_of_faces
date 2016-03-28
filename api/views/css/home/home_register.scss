@@ -1,0 +1,70 @@
+   
+ @import "../includes/navigation/navigation_register";
+
+   .main_container{
+        margin-top: $navbarHeight;
+
+        label{
+            color: #2F4371;
+        }
+    }
+
+    .mainContainer h2{
+        color: #626262;
+        font-size: 2em;
+    }
+
+
+    .mainContainer form{
+        font-size: 1.2em;
+    }
+
+    .welcome{
+        text-decoration: underline;
+    }
+
+    .pomoc{
+        font-size: 0.75em;
+        font-family: italic;
+    }
+    .required{
+        padding-right: 10px;
+    }
+
+    .reqSymbol{
+        color: red;
+        display: none;
+    }
+    .required .reqSymbol{
+        display: inline;
+    }
+
+    .mainContainer .form-control{
+        width: 95%;
+        display: inline-block;
+    }
+
+    #quote{
+        resize: vertical;
+    }
+
+    #fajl{
+        display: none;
+    }
+
+    #slikaKorisnikaWrapper{
+        width: 15rem;
+        padding: 5px;
+    }
+
+    #slikaKorisnika {
+        width: 100%;
+    }
+
+    #slikaKorisnika{
+        margin-bottom: 10px;
+    }
+
+    .AddImageContainer{
+        margin-bottom: 10px;
+    }

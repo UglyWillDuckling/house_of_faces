@@ -1,0 +1,75 @@
+#mainNavbar {
+  height: 100px; }
+
+#rememberBox {
+  vertical-align: middle;
+  margin: 0;
+  margin-bottom: 1px; }
+
+#navbar {
+  float: right; }
+
+.naslov a {
+  display: inline-block;
+  float: left;
+  color: #E2EBF5; }
+
+.naslov a:hover {
+  text-decoration: none; }
+
+.naslov h2, h3 {
+  margin-top: 5px; }
+
+.main_container {
+  margin-top: 100px; }
+  .main_container label {
+    color: #2F4371; }
+
+.mainContainer h2 {
+  color: #626262;
+  font-size: 2em; }
+
+.mainContainer form {
+  font-size: 1.2em; }
+
+.welcome {
+  text-decoration: underline; }
+
+.pomoc {
+  font-size: 0.75em;
+  font-family: italic; }
+
+.required {
+  padding-right: 10px; }
+
+.reqSymbol {
+  color: red;
+  display: none; }
+
+.required .reqSymbol {
+  display: inline; }
+
+.mainContainer .form-control {
+  width: 95%;
+  display: inline-block; }
+
+#quote {
+  resize: vertical; }
+
+#fajl {
+  display: none; }
+
+#slikaKorisnikaWrapper {
+  width: 15rem;
+  padding: 5px; }
+
+#slikaKorisnika {
+  width: 100%; }
+
+#slikaKorisnika {
+  margin-bottom: 10px; }
+
+.AddImageContainer {
+  margin-bottom: 10px; }
+
+/*# sourceMappingURL=home_register.css.map */
