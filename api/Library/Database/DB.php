@@ -223,9 +223,8 @@
          * @param array  $whereField imena polja u tablici koja se moraju
          *                           podudarati
          */
-        public function set($setData, $whereField = array()){ //doradi imena argumenata
-       
-
+        public function set($setData, $whereFields = array()) //doradi imena argumenata
+        {     
             $set = "SET ";
             foreach($setData as $field => $value)
             {
@@ -234,7 +233,7 @@
             $set = trim($set, ", ");         
 
             $where = "WHERE ";
-            foreach($whereField as $cond)
+            foreach($whereFields as $cond)
             {
                 $where .= $cond[0] . $cond[1] . ":" . $cond[0];
             }
@@ -246,7 +245,7 @@
             {
                 $stmt->bindValue(":".$field, $value);
             }
-            foreach($whereField as $where)
+            foreach($whereFields as $where)
             {
                 $stmt->bindValue(":".$where[0], $where[2]);
             }
@@ -258,7 +257,8 @@
             $this->success = ($stmt->rowCount()) ? true : false;
  
             return $this;
-    }
+    }#\set()
+
 
     /**
      * brisanje stupca iz baze podataka

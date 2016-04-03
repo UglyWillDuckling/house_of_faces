@@ -18,6 +18,8 @@
 
     require "profile/profile.php";
     require "profile/getPicture.php";
+    require "profile/addImage.php";
+    require "profile/deleteImage.php";
 
     require "temp/uploadRegistrationImage.php";
 
@@ -28,5 +30,7 @@
     require "auth/activation.php";
     require "auth/login.php";
     require "auth/logout.php";
+
+    require("test/testThumb.php");
 
     

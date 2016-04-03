@@ -3,14 +3,18 @@
 {% block title %}profile{% endblock %}
 
 {% block js %}       
-        <script src="{{ strap.baseUrl }}/api/javascript/functions/like.js"></script>    
-        <script src="{{ strap.baseUrl }}/api/javascript/functions/statusUpdate.js"></script> 
-        <script src="{{ strap.baseUrl }}/api/javascript/functions/comments&amp;posts.js"></script>  
-        <script src="{{ strap.baseUrl }}/api/javascript/functions/profile/controls.js"></script>  
-             
-        <script src="{{ strap.baseUrl }}/api/javascript/profile/profile.js"></script>   
+    <script src="{{ strap.baseUrl }}/api/javascript/functions/like.js"></script>    
+    <script src="{{ strap.baseUrl }}/api/javascript/functions/statusUpdate.js"></script> 
+    <script src="{{ strap.baseUrl }}/api/javascript/functions/comments&amp;posts.js"></script>
 
-        {% if strap.loggedIn %}
+    <script src="{{ strap.baseUrl }}/api/javascript/functions/profile/controls.js"></script>         
+    <script src="{{ strap.baseUrl }}/api/javascript/profile/images.js"></script> 
+    <script src="{{ strap.baseUrl }}/api/javascript/functions/little/makeThumb.js"></script> 
+
+    <script src="{{ strap.baseUrl }}/api/javascript/profile/profile.js"></script> 
+
+    <script src="{{ strap.baseUrl }}/api/javascript/profile/addImage.js"></script> 
+    {% if strap.loggedIn %}
 <!--javascript za profil trenutnog korisnika--> 
 
         {% endif %}  
@@ -68,17 +72,28 @@
             </div>
 
             <div id="PicturesContainer" class="content noneDisplay" data-link="pictures">
-                {% for pic in userPics %}
+                <div id="thumbs" class="thumbs">
+
+                 {% for pic in userPics %}
                     <div class="userThumb" data-picid="{{ pic.picture_id }}">
                         <img src="{{ strap.baseUrl }}/{{ pic.path }}" alt="userpicture-{{ pic.path }}">
-                    </div>
-                    
+   
+                         <button class="deleteBtn" data-picid="{{ pic.picture_id }}">
+                            delete
+                            <div class="overlay">                                
+                            </div>
+                        </button>                                     
+                    </div>                
                 {% endfor %}
-
+                </div>
+               
+<!--prikaz slike-->
                 <div id="imgCarrousel" class="noneDisplay">
                     <div class="pictureContainer">
                         <div class="userPicture">
                           <img id="currentImage" src="{{ strap.baseUrl }}/public/images/default/defaultUser.png" alt="user">  
+
+                          <button id="currentImgLikeBtn" class="likeBtn noneDisplay"><span></span></button>
                         </div>
                         <div class="imageDesc">
                             {{ pic.description }}
@@ -115,7 +130,16 @@
 
                     <span id="closeCarrousel" class="interactive closeCarr">&times;</span>    
                 </div> 
-            </div>
+
+                <div class="addImageContainer">
+                    <div class="add">
+                        <button id="addImageBtn" class="addImageBtn btn">
+                            add new image
+                        </button>
+                    </div>
+                    <input type="file" name="newImage" id="newImageFile" class="noneDisplay">
+                </div>
+            </div>          
         </div>
     </div>
 {% endblock %}

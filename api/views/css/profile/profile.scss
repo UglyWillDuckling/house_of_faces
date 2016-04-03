@@ -7,7 +7,7 @@
      $backHeight : 75%;
      $imgHeight: 46em;
      $imgWidth: 55em;
-     $arrowOffset: 25px;//offsets for the image arrows
+     $arrowOffset: 50px;//offsets for the image arrows
 
     .topContainer{
 
@@ -64,25 +64,54 @@
         }
     }
 
+    .controlLink{
+        &:hover{
+            text-decoration: none;
+        }
+    }
+
     .contentContainer{
 
         padding: 10px;
         border: 1px solid #C3C2C2;
         margin-top: 10px;
-        background: #E6E6E6;
+        background: #EAEAEA;
     }
 
 
+    #PicturesContainer
+    {
+    padding-bottom: 5px;
+    }
+
     .userThumb{
         width: 19.5%;
+        height: 7.5em;
+        position: relative;
+
         display: inline-block;
+        overflow: hidden;
+
+        padding-right: 0;
 
         margin-bottom: 6px;
 
         img{
             width: 100%;
         }
+
+        &:hover .deleteBtn{
+
+            //show the delete button
+            display: block;    
+        }
     }
+
+
+
+/********              *********
+    PRIKAZ TRENUTNE SLIKE 
+/********             *********/
 
     #imgCarrousel{
 
@@ -121,6 +150,8 @@
         }
 
         .userPicture{
+            position: relative;
+
             width: $imgWidth;
             height: $imgHeight;
             display: inline-block;
@@ -129,6 +160,12 @@
             img{
                 width: 100%;
                 height: 100%;
+            }
+
+            &:hover{
+                #currentImgLikeBtn{
+                    display: block;
+                }
             }
         }
 
@@ -174,3 +211,90 @@
             right: $arrowOffset;
         }
     }
+
+    #currentImgLikeBtn
+    {    
+        position: absolute;
+        bottom: 11px;
+        right: 14px;
+
+        font-size: 1.5em;
+        padding: 5px 19px 7px 19px;
+        background: rgba(0, 0, 0, 0.76);
+        color: #A8A4A4;
+
+        vertical-align: middle;
+        border-radius: 5px;
+        
+        &:hover{
+            color: #E6E2E2;
+        }
+    }
+
+
+//NOVA SLIKA
+    
+    #newImageFile
+    {
+    display: none; 
+    }
+
+    .addImageContainer{
+        margin-top: 8px;
+        margin-bottom: 2px;
+
+        background: white;
+        padding: 7px 0;
+        border-radius: 4px;
+
+
+        .add{
+            text-align: center;
+        }
+    }
+
+    .addImageBtn{
+        background: #2085DD;
+
+        font-size: 1.25em;
+        padding: 6px 16px;
+
+        color: white !important;
+
+        &:hover{
+            background: #3A90DD;
+            color: white;
+        }
+    }
+
+
+    /****delete image *****/
+
+    .deleteBtn{
+
+        position: absolute;
+        top:3px;
+        right: 2px;
+
+        display: none;    
+        padding: 2px 8px;
+        border-radius: 5px;
+
+        color: white;
+        background: rgb(25, 23, 23);
+
+        font-size: 0.8em;
+
+        .overlay{
+
+            left: 0;
+            background: black;
+            opacity: 0.5;
+            border-radius: 6px;
+        }
+        
+        &:hover .overlay{
+            display: none;
+        }
+    }
+        

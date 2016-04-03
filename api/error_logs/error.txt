@@ -19,3 +19,7 @@ time: 1459014878 line: 256, in file C:\wamp\www\house_of_faces\vendor\twig\twig\
 time: 1459014885 line: 215, in file C:\wamp\www\house_of_faces\vendor\twig\twig\lib\Twig\Loader\Filesystem.php, with message: Unable to find template "parts/updateStatus.twig" (looked into: C:\wamp\www\house_of_faces/api/views) in "home/home_member.twig" at line 46.
 time: 1459014896 line: 215, in file C:\wamp\www\house_of_faces\vendor\twig\twig\lib\Twig\Loader\Filesystem.php, with message: Unable to find template "parts/updateStatus.twig" (looked into: C:\wamp\www\house_of_faces/api/views) in "home/home_member.twig" at line 46.
 time: 1459014907 line: 215, in file C:\wamp\www\house_of_faces\vendor\twig\twig\lib\Twig\Loader\Filesystem.php, with message: Unable to find template "header.html" (looked into: C:\wamp\www\house_of_faces/api/views) in "home/home_member.twig" at line 46.
+time: 1459453781 line: 14, in file C:\wamp\www\house_of_faces\api\functions\saveImage.php, with message: error with the image upload.
+time: 1459453834 line: 14, in file C:\wamp\www\house_of_faces\api\functions\saveImage.php, with message: error with the image upload.
+time: 1459526772 line: 66, in file C:\wamp\www\house_of_faces\api\routes\profile\addImage.php, with message: no picture with the upload.
+time: 1459545020 line: 71, in file C:\wamp\www\house_of_faces\api\routes\profile\addImage.php, with message: no picture with the upload.

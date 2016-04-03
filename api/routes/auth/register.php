@@ -66,12 +66,20 @@
 
                     require INC_FOLDER . "/api/functions/saveImage.php";    
 
-                    $relPath = "/public/images/users/";
                     $jibberJabber = bin2hex(openssl_random_pseudo_bytes(32));//nasumični string
 
-                    $relPath = $relPath . $jibberJabber . "." . pathinfo($image['name'], PATHINFO_EXTENSION);   
-                    $path = INC_FOLDER . $relPath; //absolute path
-                    saveImage($path, $relPath, $db, $image, $user_id);
+                    saveImage($jibberJabber, $image, $user_id, $db);
+
+                 //here we are settting the image we just saved as the users profile picture   
+                    $db->setTable('users');
+                    $db->set([         
+                        'user_i1mage' => $picture_id
+                    ],
+                    [
+                        [
+                            'id', '=', $id
+                        ]
+                    ]);
                 }
 
             //send the activation email  

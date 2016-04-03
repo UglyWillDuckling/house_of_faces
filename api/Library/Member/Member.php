@@ -4,9 +4,10 @@
     use Tricky\helpers\QueryObject\QueryObject;
     use Tricky\helpers\Request\Request;
 
-    class Member {
+    class Member 
+    {
 
-            private $db, $strap;
+        private $db, $strap;
 
         public function __construct($db, $id, $strap){
 
@@ -236,8 +237,7 @@
 
             $q = new QueryObject;
 
-            
-
+        
             $q->setRule([ 
                 'post_id', '=', $post['postId'] 
             ]);
@@ -254,7 +254,7 @@
         }//_getPostPics()
 
 
-        private function checkLove($content){
+        public function checkLove($content){
 
             $db = $this->db;
             $q = new QueryObject;
@@ -505,4 +505,20 @@
 
             return $slike;
         } 
-    }//\Member
+
+        function saveProfileImage($slika){
+            $doodlydoo = random_bytes(32);
+
+            $d= saveImage($doodlydoo, $slika, $this->id, $this->db);
+
+            $db->setTable('users');
+
+            $db->set([
+                'user_image' => $d['picture_id']
+            ],[      
+                [
+                'id', '=', $this->id  
+                ],            
+            ]);
+        }
+    }//\Member class

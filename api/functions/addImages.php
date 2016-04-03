@@ -27,7 +27,6 @@
                     'creator_id' => $userId,                   
                 ]);
 
-
          //insert u pictures tablicu       
                 $db->setTable('pictures');
                 $content_id = $db->lastInsertId();

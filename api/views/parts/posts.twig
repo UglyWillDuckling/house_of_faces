@@ -27,7 +27,6 @@
                            <button class="postBtn likeBtn 
                            {% if (post.liked) %}liked
                             {% else %}noLike{% endif %}" 
-                            onclick="meLikey(this);"
                             data-contentId="{{ post.ownId }}">
                               <img class="likeIcon" src="{{ strap.baseUrl }}/public/images/icons/like.png" alt="iconL">  
                            <span></span>
@@ -54,7 +53,7 @@
                                  </div>                              
                                  <div class="commentInteraction">
 <!--gumb za like nekog komentara-->
-                                    <button onclick ="meLikey(this);" class="likeBtn {% if opinion.liked %}liked{% else %}noLike{% endif %}" data-contentId="{{ opinion.ownId }}">
+                                    <button class="likeBtn {% if opinion.liked %}liked{% else %}noLike{% endif %}" data-contentId="{{ opinion.ownId }}">
                                       <span></span>
                                     </button> 
                                     <button class="replyBtn" data-contentid="{{ opinion.ownId }}">reply</button> 
@@ -83,7 +82,7 @@
                                         </div>                              
                                         <div class="commentInteraction">
            <!--gumb za like nekog reply-ja-->
-                                           <button href="#" onclick="meLikey(this);" class="likeBtn  {% if reply.liked %}liked{% else %}noLike{% endif %}" data-contentId="{{ reply.ownId }}">
+                                           <button href="#" class="likeBtn  {% if reply.liked %}liked{% else %}noLike{% endif %}" data-contentId="{{ reply.ownId }}">
                                              <span></span>
                                            </button>
                                            <button class="replyBtn" data-contentId="{{ opinion.ownId }}">reply</button>

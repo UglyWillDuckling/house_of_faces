@@ -32,6 +32,7 @@
                     
                     $picture['path'] = $strap->baseUrl . $picture['path'];
                     $picture['comments'] = $strap->member->getComments($picture);   
+                    $picture['liked'] = $strap->member->checkLove($picture);   
 
                     $json->setValue('picture', $picture);         
                 }

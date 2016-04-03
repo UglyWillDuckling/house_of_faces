@@ -1,43 +1,55 @@
 
-        function meLikey(likeButton){
 
-            var content_id = likeButton.getAttribute('data-contentId');
+    eventAssigner.addListener('like', function(){
 
-            if(content_id)
-            {
-                var myRequest = new XMLHttpRequest();
+        var likeBtns = getByClass('likeBtn');
 
-                //notify user if this doesnt work
-                var form = new FormData();
-
-                form.append('content_id', content_id);
-
-                var link = "/house_of_faces/like";
-                myRequest.open('POST', link);
+        for (var i = 0; i < likeBtns.length; i++) 
+            likeBtns[i].addEventListener('click', function(){
+                meLikey(this);
+            });    
+    });
 
 
-                ajax(link, form, function(xhr){
+    function meLikey(likeButton){
 
-                    //ako je sve proslo u redu promjeni klasu like buttona 
-                        var data = JSON.parse(xhr.responseText);
-                        console.log(data);
-                        if(data['ok']){
-                            //change the button class
-                            var klasa = likeButton.className;   
+        var content_id = likeButton.getAttribute('data-contentId');
 
-                        //kad indexOf() ne nade dani mu string vraca -1
-                            if( klasa.indexOf('liked') !== -1 ){
-       
-                                likeButton.className = klasa.replace('liked', 'noLike');    
-                            } 
-                            else {
-                                likeButton.className = klasa.replace('noLike', 'liked');
-                            }
-                        }
+        if(content_id)
+        {
+            var myRequest = new XMLHttpRequest();
+
+            //notify user if this doesnt work
+            var form = new FormData();
+
+            form.append('content_id', content_id);
+
+            var link = "/house_of_faces/like";
+            myRequest.open('POST', link);
+
+
+            ajax(link, form, function(xhr){
+
+                //ako je sve proslo u redu promjeni klasu like buttona 
+                    var data = JSON.parse(xhr.responseText);
+                    console.log(data);
+                    if(data['ok']){
+                        //change the button class
+                        var klasa = likeButton.className;   
+
+                    //kad indexOf() ne nade dani mu string vraca -1
+                        if( klasa.indexOf('liked') !== -1 ){
+
+                            likeButton.className = klasa.replace('liked', 'noLike');    
+                        } 
                         else {
-                            //display message, something is wrong with db
-                            console.log('db malfunction.');
+                            likeButton.className = klasa.replace('noLike', 'liked');
                         }
-                });                 
-            }            
-        }
+                    }
+                    else {
+                        //display message, something is wrong with db
+                        console.log('db malfunction.');
+                    }
+            });                 
+        }            
+    }

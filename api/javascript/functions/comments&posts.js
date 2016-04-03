@@ -6,8 +6,10 @@
             likeBtn.addEventListener('click', function(){
                 meLikey(this);
             });
-        //tekst like buttona
-            likeBtn.innerHTML = liked ? 'you like this' : 'like';
+
+                var spanner = createEl('span');
+
+                likeBtn.appendChild(spanner);
 
         return likeBtn;
     }
@@ -26,12 +28,12 @@
 
     function createInteraction(liked, id, commentId){
 
-        var commentI = createEl('div', 'commentInteraction');
+        var commentInt = createEl('div', 'commentInteraction');
 
-        commentI.appendChild( createLikeButton(liked, id) );
-        commentI.appendChild( createReplyBtn(commentId) );
+        commentInt.appendChild( createLikeButton(liked, id) );
+        commentInt.appendChild( createReplyBtn(commentId) );
 
-        return commentI;
+        return commentInt;
     }
 
 
@@ -120,29 +122,8 @@
 
             commentInfo.appendChild(commentContent);
 
-            var commentInteraction = createEl('div', 'commentInteraction');
+            var commentInteraction = createInteraction(liked, ownId, ownId);
             commentInfo.appendChild(commentInteraction);
-
-                var likeBtn = createEl('button', 'likeBtn noLike');
-                commentInteraction.appendChild(likeBtn);
-
-                    likeBtn.setAttribute('data-contentid', ownId);
-                    likeBtn.addEventListener('click', function(){
-                        meLikey(this);
-                    });
-                //tekst like buttona
-                    likeBtn.innerHTML = liked ? 'you like this' : 'like';
-
-
-                var replyBtn = createEl('button', 'replyBtn');
-                commentInteraction.appendChild(replyBtn);
-
-                    replyBtn.setAttribute('data-contentid', ownId);
-                    replyBtn.addEventListener('click', function(){
-                        focusOnText(this);
-                    });
-                    replyBtn.innerHTML = "reply";
-
 
             if(replies) //ako postoje odgovori na ovaj komentar
             {
