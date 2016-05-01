@@ -1,0 +1,232 @@
+
+
+     $imgHeight: 46em;
+     $imgWidth: 55em;
+     $arrowOffset: 50px;//offsets for the image arrows
+
+    #PicturesContainer
+    {
+    padding-bottom: 5px;
+    }
+
+
+    #thumbs{
+        padding: 7px;
+        padding-bottom: 1px;
+        background: #F8F8F8;
+    }
+
+    .userThumb{
+        width: 19.5%;
+        height: 7.5em;
+        position: relative;
+
+        display: inline-block;
+        overflow: hidden;
+
+        padding-right: 0;
+
+        margin-bottom: 3px;
+        margin-right: -3px;//!poništavamo automatske margine browsera
+        padding-right: 4px;
+
+        img{
+            width: 100%;
+        }
+
+        &:hover .deleteBtn{
+
+            //show the delete button
+            display: block;    
+        }
+    }
+
+
+
+/********              *********
+    PRIKAZ TRENUTNE SLIKE 
+/********             *********/
+
+    #imgCarrousel{
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100000;
+        background: black;
+
+        width: 100%;
+        height: 100%;
+
+        .pictureContainer
+        {
+            width: 80%;
+            height: 600px;
+            margin-top: 100px;
+            margin-left: 200px;
+        }
+
+
+        .comments
+        {
+            display: inline-block;
+            width: 25em;
+            min-height: $imgHeight;
+
+            background: white;          
+            padding: 10px;
+            margin-left: 10px;
+
+            h4{
+                font-weight: 600;
+                color: #5A5A5A;
+            }
+        }
+
+        .userPicture{
+            position: relative;
+
+            width: $imgWidth;
+            height: $imgHeight;
+            display: inline-block;
+            float: left;
+
+            img{
+                width: 100%;
+                height: 100%;
+            }
+
+            &:hover{
+                #currentImgLikeBtn{
+                    display: block;
+                }
+            }
+        }
+
+        .interactive{
+            &:hover{
+                cursor: pointer;
+                color: white;
+            }
+        }
+
+  //znak x, za zatvaranje prikaza slike
+        .closeCarr{
+            position: absolute;
+            font-size: 3em;
+            color: #A0A0A0;        
+        }
+
+
+        #closeCarrousel{
+            top: 0;
+            right: $arrowOffset;
+        }
+
+        .opinion textarea{//odredujemo sirinu textarea za davanje komentara
+            width: 90%;    
+        }
+
+        .arrow{
+            position: absolute;
+            top: 16em;
+            z-index: 10;
+
+            color: #A0A0A0; 
+            font-size: 1.7em;
+        }
+
+        .arrowLeft{
+            left: $arrowOffset;
+        }
+
+        .arrowRight{
+
+            right: $arrowOffset;
+        }
+    }
+
+    #currentImgLikeBtn
+    {    
+        position: absolute;
+        bottom: 11px;
+        right: 14px;
+
+        font-size: 1.5em;
+        padding: 5px 19px 7px 19px;
+        background: rgba(0, 0, 0, 0.76);
+        color: #A8A4A4;
+
+        vertical-align: middle;
+        border-radius: 5px;
+        
+        &:hover{
+            color: #E6E2E2;
+        }
+    }
+
+
+//NOVA SLIKA
+    
+    #newImageFile
+    {
+    display: none; 
+    }
+
+    .addImageContainer{
+        margin-top: 8px;
+        margin-bottom: 2px;
+
+        background: white;
+        padding: 7px 0;
+        border-radius: 4px;
+
+
+        .add{
+            text-align: center;
+        }
+    }
+
+    .addImageBtn{
+        background: #2085DD;
+
+        font-size: 1.25em;
+        padding: 6px 16px;
+
+        color: white !important;
+
+        &:hover{
+            background: #3A90DD;
+            color: white;
+        }
+    }
+
+    /****delete image *****/
+
+    .deleteBtn{
+
+        position: absolute;
+        top:3px;
+        right: 6px;
+
+        display: none;    
+        padding: 2px 8px;
+        border-radius: 5px;
+
+        color: white;
+        background: rgb(25, 23, 23);
+
+        font-size: 0.8em;
+
+        .overlay{
+
+            left: 0;
+            background: black;
+            opacity: 0.5;
+            border-radius: 6px;
+        }
+        
+        &:hover .overlay{
+            display: none;
+        }
+    }

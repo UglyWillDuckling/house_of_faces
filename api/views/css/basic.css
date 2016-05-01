@@ -1,7 +1,8 @@
 /** modifikacije izgleda osnovnih html elemenata **/
 body {
   font-family: 'Source Sans Pro', sans-serif;
-  color: #fff; }
+  color: #fff;
+  font-size: 1.3em; }
 
 label {
   color: white; }
@@ -22,12 +23,16 @@ li {
   list-style-type: none; }
 
 li a {
-  display: inline-block; }
+  display: inline-block;
+  width: 100%; }
+
+small {
+  font-size: 90%; }
 
 /** modifikacije izgleda osnovnih html elemenata **/
 /*** bootstrap element modifications ***/
 .navbar-inverse {
-  background-color: #355796;
+  background-color: #2D6AD7;
   padding-top: 20px; }
 
 .btn-primary {
@@ -94,5 +99,8 @@ hr {
 
 .help-block {
   font-size: 0.75em; }
+
+.changed {
+  background: #57E08F !important; }
 
 /*# sourceMappingURL=basic.css.map */

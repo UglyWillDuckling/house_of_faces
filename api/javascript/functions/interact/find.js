@@ -10,7 +10,7 @@
 
             form.append('word', word);
 
-            var link = "/house_of_faces/find";
+            var link = eventAssigner.baseUrl + "/find";
 
             ajax(link, form, function(xhr){
                 
@@ -36,7 +36,7 @@
                         i++;
                     }
 
-                    if(i) { //ako je bilo rezultata prikazujemo listu
+                    if(i){ //ako je bilo rezultata prikazujemo listu
                         list.className = "userList"; 
                         click.className = "";
                     } 
@@ -59,7 +59,7 @@
 
         var ankor = createEl('a');
 
-            ankor.href = 'house_of_faces/profile?id='+ id;
+            ankor.href = eventAssigner.baseUrl + '/profile?id='+ id;
 
             liItem.appendChild(ankor);
 
@@ -69,7 +69,8 @@
 
         var userImage = createEl('img', 'userImage'); 
             userImage.src = imagePath ? ('http://127.0.0.1/house_of_faces/' + imagePath) : 'http://127.0.0.1/house_of_faces/public/images/default/defaultUser.png'; 
-  
+            userImage.setAttribute('alt', 'userImage');
+
         littleUser.appendChild(userImage);
 
 
@@ -105,7 +106,7 @@
 
 
             var lastValue;
-            setInterval(function(){//stvaramo svojevsrni custom event, koji provjerava vrijednost u search polju svakih 500ms
+            setInterval(function(){//stvaramo svojevsrni custom event, koji provjerava vrijednost u search polju svakih 1000ms
                 if(lastValue != search.value){
 
                     if(search.value.length > 2){

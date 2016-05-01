@@ -1,0 +1,168 @@
+
+    /******INFO*****/
+
+    #aboutMeContainer{
+
+        h3{
+            margin-top: 5px;
+        }
+
+        hr{
+           border-top: 1px solid #929090;
+           margin-bottom: 5px;
+        }
+    }
+
+    .infoContainer{
+        margin-top: 10px;
+    }
+
+    .sideInfo{
+        width: 26%;
+        display: inline-block;
+        padding-right: 10px;
+        font-size: 1.2em;
+        border-right: 1px solid #A29E9E;
+
+        .clicked{
+            background: #E2E2E2;
+            color: #393939;
+
+        }
+    }
+
+    a.aboutBtn {
+        display: block;
+        /* margin-bottom: 10px; */
+        padding: 8px;
+        border-radius: 2px;
+    }
+
+    .infoContent{
+    display: inline-block;
+    vertical-align: top;
+    width: 73%;
+    padding: 10px;
+
+    border-radius: 2px;   
+
+        input{
+            width: 70%;
+            font-size: 1.2em;
+
+            margin-right: 5px;
+        }
+
+
+    }
+
+    .information{
+        padding: 5px;
+        margin-bottom: 5px;
+
+        &:hover{
+            background: #F8F8F8;
+        }
+
+        h4{
+            display: inline-block;
+            padding-right: 5px;
+        } 
+
+        label{
+            color: rgba(63,61,61,0.82);
+        }
+
+        select{
+            margin-bottom: 5px;
+        }
+    }
+
+    .updateInfoBtn{
+        background: #62CAF4;
+        color: #312F2F;
+        font-weight: 600;
+    }
+
+    .addContentBtn{
+        background: rgba(195, 198, 205, 0.79);
+        color: #000;
+    }
+
+    .addContentBtn:hover, .updateInfoBtn:hover
+    {
+    color: white;
+    }
+
+    .addContainer
+    {
+        position: fixed;
+        top: 335px;
+        left: 550px;
+        z-index: 99;
+       
+
+        padding: 20px;
+        background: #fff;
+        font-size: 1.3em;
+
+         background: #232937;
+        color: white;
+
+        border: 1px solid grey;
+        box-shadow: 1px 1px 0px gainsboro;
+
+        .closeCarr{
+
+            position: absolute;
+            top: 0;
+            right: 5px;
+
+            font-size: 1.1em;
+        }
+    }
+
+    .addBtn{
+
+        background: #2ED171; 
+        margin-top: 5px;   
+    }
+
+    .changePhoto{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+
+    #changePhotoBtn{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+
+        border-radius: 2px;
+        padding: 5px 0;
+        
+        color: white;
+
+        font-weight: 600;
+        font-size: 1.2em;
+
+        .overlay{
+            background: #000;
+            opacity: 0.25;         
+        }
+
+        &:hover{
+
+            text-decoration: none;
+
+            .overlay
+            {
+                opacity: 0.1;         
+            }
+        }
+    }

@@ -188,7 +188,6 @@
 
         var comment = document.querySelector('.replies[data-contentid="' + comment_id + '"]');
 
-        //console.log(post);return 1;
 
         var opinion = makeReply(comment_id, tekst, user, image);
 
@@ -198,7 +197,8 @@
 
     function addComment(content_id, tekst, user, image, alias, ownId, memberImage)
     {
-        var container = document.querySelector(alias + '[data-contentid="' + content_id + '"]');
+
+        var container = query('.comments[data-contentid="' + content_id + '"]');
         var opinion = makeComment(tekst, user, image, ownId, memberImage);
 
         container.insertBefore(opinion, container.firstChild);
@@ -216,6 +216,7 @@
             var content_id = opinion.getAttribute('data-contentid');
             var alias = opinion.getAttribute('data-alias');
 
+            console.log(opinion);
 
             var link = "/house_of_faces/comment";
             var form = new FormData();
@@ -267,7 +268,7 @@
 
         var post_id = anchor.getAttribute('data-postId');
 
-        var opinionArea = document.querySelector('textarea[data-postId="' + post_id + '"]');
+        var opinionArea = document.querySelector('textarea[data-contentid="' + post_id + '"]');
         opinionArea.focus();
 
         return false;

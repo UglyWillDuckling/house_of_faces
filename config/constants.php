@@ -4,6 +4,7 @@
         
         define("BASE_URL", "http://127.0.0.1/house_of_faces");
         define("INC_FOLDER", dirname(__DIR__));
+        
         define("ROUTE_FOLDER", INC_FOLDER . "/api/routes/");
         define("VIEW_FOLDER", INC_FOLDER . "/api/views/");
         define("PICTURE_FOLDER", INC_FOLDER . "public/images");

@@ -36,14 +36,14 @@
                     'user_level',
                     'favorite_color',
                     'hobbies',
-                    'user_image'
+                    'user_image',
+                    'uniqueId'
                 ])->prvi();
                 if($data){
                     foreach($data as $row => $value){
                         $this->{$row} = $value; //za svaki stupac stvaramo novo svojstvo u 'Member' objektu
                     }
-
-                //getting the users image
+                //getting the path to the users image
                     if($image_id = $data['user_image']){
 
                         $q->setRule(['id', '=', $image_id], 'id');//we reset the 'id' rule
@@ -72,47 +72,125 @@
             }
         }
 
+        /**
+         * [friends description]
+         * @return [type] [description]
+         */
         public function friends(){
 
             $db = $this->db;
-            $db->setTable('friend_requests');
+            $db->setTable('friend_requests as fr');
 
-        //dohvacamo sve
-            $friends1 = $db->where([
-                'AND' =>
-                [
-                    [
-                    'field' => 'user_id',
-                    'rule' => '=',
-                    'value' => $this->id
-                    ],
-                    [
-                    'field' => 'accepted',
-                    'rule' => '=',
-                    'value' => 1
-                    ]
-                ]
-            ])->getAll();
+            $q = new QueryObject;
 
-            $friends2 =  $db->where([
-                'AND' =>
-                [
-                    [
-                    'field' => 'friend_id',
-                    'rule' => '=',
-                    'value' => $this->friend_id
-                    ],
-                    [
-                    'field' => 'accepted',
-                    'rule' => '=',
-                    'value' => 1
-                    ]
-                ]
-            ])->getAll();
+            $reqFields = [
+                'p.path as userImage',
+                'u.name as username',
+                'u.id as user_id'
+            ];
 
-            $db->setTable('users');
+
+            $q->setRule(['friend_id', '=', $this->id, 'AND'], 'id');
+            $q->setRule(['accepted', '=', 1], 'accepted');
+
+
+            $q->setJoin([
+                'inner', 
+                'users as u', 
+                'u.id', 
+                'fr.user_id'], 
+            'friend');
+            $q->setJoin([
+                'inner',
+                'pictures as p', 
+                'u.user_image',
+                'p.id'
+            ]);
+            
+            
+            $friends1 = $db->whereJoin(
+                $q,
+                $reqFields
+            )->getAll();
+
+
+            $q->setRule(['fr.user_id', '=', $this->id, 'AND'], 'id');
+            $q->setRule(['accepted', '=', 1], 'accepted');
+
+            $q->setJoin([
+                'inner', 
+                'users as u', 
+                'fr.friend_id', 
+                'u.id'], 
+            'friend');
+
+            $friends2 = $db->whereJoin(
+                $q, 
+                $reqFields
+            )->getAll();
+
+
+            $friends = array_merge($friends2, $friends1);
+
+            return $friends;
         }
 
+        /**
+         * metoda za pribavljanje poruka upucenih korisniku
+         * @return [type] [description]
+         */
+        public function getMessages(){
+
+            $db = $this->db;
+            $id = $this->id;
+
+            $q = new QueryObject;
+
+            try{
+                $db->setTable('messages as m');
+    
+                $q->setRule(['reader_id', '=', $id]);
+                $q->setJoin(['INNER', 'users as u', 'u.id', 'm.sender_id']);
+    
+                $q->setCondition('ORDER BY created ASC');
+    
+                $messages = $db->whereJoin($q, [
+                    'u.name',
+                    'u.nickname',
+    
+                    'm.content',
+                    'm.status',
+                    'm.created',
+                ])->getAll();
+            }
+            catch(PDOException $e){
+                echo $e->getMessage();
+            }
+
+            $poruke = [];
+
+            foreach($messages as $m){
+
+                $m['date-diff'] = contentAge($m['created']);
+                die($m['date-diff']);
+
+                if($m['status'])
+                    $poruke['read'][] = $m;
+                else
+                    $poruke['unread'][] = $m;
+
+                
+
+            }
+
+            return $poruke;
+        }
+
+
+        /**
+         * [getMyPosts description]
+         * @return [type] [description]
+         */
         public function getMyPosts(){
 
             $db = $this->db;
@@ -188,7 +266,7 @@
             )->getAll();
 
             //preCode($friendPosts1);die;
-            
+            //date_difference($friendPosts1[0]['creation'], "now");die;
 
         //changing the join under the key 'joinId'
             $query->setJoin(['inner', 'users', 'users.id', 'friend_requests.user_id'], 'joinId');
@@ -298,6 +376,7 @@
                 'comments.id',      
                 'comments.tekst',  
                 'comments.own_content_id as ownId',            
+                'comments.creation as creation',            
                 'content.number_of_likes',
                  
                 'pictures.path as userImage',
@@ -321,6 +400,7 @@
                     'replies.own_content_id as ownId',
                     'replies.tekst',
                     'replies.content_id',
+                    'replies.creation',
 
                     'content.number_of_likes as likes',
 
@@ -385,12 +465,6 @@
             return $users;
         }
 
-        public function getMessages(){
-
-            $db = $this->db;
-
-        }
-
         /**
          * dobavljanje neodgovorenih zahtjeva za prijateljstvo
          * @return [array] 
@@ -408,30 +482,16 @@
             $q->setJoin(['inner', 'users', 'friend_requests.user_id', 'users.id']);
             $q->setJoin(['left', 'pictures', 'users.user_image', 'pictures.id']);
 
-            $reqs = $db->whereJoin($q,[
+            $reqs = $db->whereJoin($q, [
                 'users.name as username',
+                'friend_requests.user_id',
                 'users.nickname',
                 'pictures.path as userImage',
                 'friend_requests.id as request_id',
             ])
             ->getAll();
 
-            $this->requests = $reqs;
-
             return $reqs;
-        }
-
-        public function hasRequests(){
-            if($this->requests)
-                return true;
-
-            return false;
-        }
-
-        public function giveRequests(){
-            if($this->requests) return $this->requests;
-
-            return false;
         }
 
         /**
@@ -506,6 +566,11 @@
             return $slike;
         } 
 
+        /**
+         * jednostavna metoda za upload i spremanje slike profila korisnika
+         * @param  [type] $slika [description]
+         * @return [type]        [description]
+         */
         function saveProfileImage($slika){
             $doodlydoo = random_bytes(32);
 
@@ -520,5 +585,159 @@
                 'id', '=', $this->id  
                 ],            
             ]);
+        }
+
+        /**
+         * metoda za brisanje slike koja pripada korisniku
+         * @param  [string] $content_id 
+         * @return [void]             
+         */
+        function deleteImage($content_id)
+        {
+
+          //delete the image(comments, likes, content etc.)                     
+            $content_id = $pic['content_id'];
+
+            /**
+             * deleteContent() deletes everything related to the given content_id
+             * and the content itself                      /(comments, replies, likes)
+             */
+            require INC_FOLDER . "/api/functions/deleteContent.php";
+            deleteContent($content_id, $this->db);//pass by reference
+
+
+            //deleting the image itself
+            $absPath = PICTURE_FOLDER . "/users/" . $pic['path'];
+
+        //we make a copy of the image just in case the deletion doesn't go as planned
+            $tempPath = PICTURE_FOLDER . "temp/delete/" . $pic['path'];
+            copy($absPath, $tempPath);
+            
+
+            if(!unlink($absPath)) {
+                $e = new Exception('error while deleting the image.');              
+                throw $e;
+            }
+
+            $thumbPath = PICTURE_FOLDER . "/thumbs/" . $pic['path'];
+
+            if( !unlink( $thumbPath) ){
+                $e = new Exception('error while deleting the image.');  
+
+                $e->tempPath = $tempPath;           
+                $e->absPath = $absPath;
+
+                throw $e;
+            }
+
+            unlink($tempPath);//if there was no error we delete the temporary copy of the image
+        }#\deleteImage()
+
+
+        /**
+         * method for storing all of the users data
+         * @return [type] [description]
+         */
+        public function storeUserInfo(){
+
+           $db = $this->db;
+
+           $db->setTable('users as u');
+
+           $q = new QueryObject;
+
+           $q->setRule(['u.id', '=', $this->id]);     
+
+
+           $q->setJoin(['left', 'countries as c', 'u.country_id', 'c.id']);
+           $q->setJoin(['left', 'movies as m', 'u.favorite_movie', 'm.id']);
+           $q->setJoin(['left', 'shows as s', 'u.favorite_show', 's.id']);
+           $q->setJoin(['left', 'colors', 'u.favorite_color', 'colors.id']);
+           $q->setJoin(['left', 'places as p', 'place_id', 'p.id']);
+           $q->setJoin(['left', 'songs', 'u.favorite_song', 'songs.id']);
+           $q->setJoin(['left', 'zanimanje as z', 'u.zanimanje_id', 'z.id']);
+           $q->setJoin(['left', 'companies', 'u.company_id', 'companies.id']);
+
+           $db->whereJoin($q, [
+                'm.name as favorite_movie', 
+                'm.id as movie_id', 
+                's.name as favorite_show', 
+                's.id as show_id', 
+                'c.name as country', 
+                'c.id as country_id', 
+                'colors.name as color', 
+                'colors.id as color_id', 
+                'p.name as place', 
+                'p.id as place_id', 
+                'songs.name as song', 
+                'songs.id as song_id', 
+                'hobbies',
+                'companies.name as company',
+                'z.name as zanimanje',
+                'z.id as zanimanje_id'
+           ]);
+
+           $info = $db->prvi();
+
+
+           foreach($info as $field => $value) $this->$field = $value;
+        }
+
+        /**
+         * [checkFriendshipStatus description]
+         * @param  [type] $user_id [description]
+         * @return [type]          [description]
+         */
+        public function checkFriendshipStatus($user_id){
+            $db = $this->db;
+
+            $status = false;
+
+
+            //first check if this member had sent a request to the user with the given id
+            
+            $q = new QueryObject;
+
+            $db->setTable('friend_requests');
+
+            $q->setRule(['user_id', '=', $this->id, 'AND'], 'user_id');
+            $q->setRule(['friend_id', '=', $user_id], 'friend_id');
+
+            $request = $db->where($q)->prvi();
+
+            if($request){
+                //check the status of the request
+                
+                switch($request['accepted']){
+                    case '0':
+                        $status = 'sent';
+                        break;
+                    case '1':
+                        $status = 'friend';
+                        break;
+                }            
+            }
+            else{
+                
+            //try to see if the given user sent a request to this member
+                $q->setRule(['user_id', '=', $user_id, 'AND'], 'user_id');
+                $q->setRule(['friend_id', '=', $this->id], 'friend_id');
+
+                $db->where($q);
+
+                if($request = $db->prvi())
+                {
+                    switch($request['accepted']){
+                        case '0':
+                            $status = 'pending';
+                            break;
+                        case '1':
+                            $status = 'friend';
+                            break;  
+                    }  
+                }
+            }
+            
+            return $status;
         }
     }//\Member class

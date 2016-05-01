@@ -20,6 +20,15 @@
     require "profile/getPicture.php";
     require "profile/addImage.php";
     require "profile/deleteImage.php";
+    require "profile/beMyFriend.php";
+    require "profile/update.php";
+    require "profile/addContent.php";
+    require "profile/changeProfilePicture.php";
+    require "profile/deleteFriend.php";
+
+
+    require "messages/messages.php";
+
 
     require "temp/uploadRegistrationImage.php";
 

@@ -6,6 +6,8 @@
   margin-bottom: 15px;
   background-color: #ffffff;
   padding: 15px; }
+  .post small {
+    color: #8D8D8D; }
 
 .userInfo {
   position: relative;
@@ -112,7 +114,8 @@
 .commentInteraction .likeBtn, .replyBtn {
   border: none;
   background: #ECECEC;
-  color: #505094; }
+  color: #505094;
+  border-radius: 4px; }
 
 .commentInteraction .likeBtn:focus, .replyBtn:focus {
   border: none;
@@ -137,7 +140,6 @@
 
 .replyAreaContainer {
   margin-left: 23px;
-  height: 27px;
   overflow: hidden; }
 
 .replyArea {
@@ -145,11 +147,11 @@
   width: 55%;
   font-size: 0.9em;
   resize: none;
-  min-height: 20px; }
+  min-height: 28px; }
 
-/* 
+/***      /***
     Images
-*/
+/***      ***/
 .postPic {
   width: 19%;
   padding-right: 6px; }
@@ -182,7 +184,7 @@
   z-index: 9; }
 
 .sideContainer {
-  background: #E6E6E6;
+  background: #F6F6F6;
   padding: 5px;
   border-radius: 5px; }
   .sideContainer .title {
@@ -207,10 +209,6 @@
 .icon {
   width: 25px; }
 
-.mainContainer {
-  background-color: #E6E6E6;
-  padding: 10px; }
-
 .statusArea {
   margin: 2px 3px 0px 45px;
   border-radius: 2px;
@@ -229,7 +227,55 @@
 .statusBtn {
   margin-top: 5px;
   border-radius: 4px;
-  color: #112C5F; }
+  font-family: cursive;
+  color: grey;
+  font-weight: 600;
+  /* font-style: italic; */
+  font-size: 1.2em; }
+  .statusBtn:hover {
+    color: #605B5B; }
+
+.addStatus {
+  background-color: #fff;
+  padding: 5px; }
+
+.addStatus .userImage {
+  width: 40px !important;
+  float: left; }
+
+#fajlBtn {
+  display: none; }
+
+.updateStatsBtn {
+  float: right; }
+
+.statPics {
+  margin-left: 50px;
+  margin-bottom: 5px;
+  padding: 1px;
+  margin-right: 3px; }
+
+.statPic {
+  width: 100%; }
+
+.mainContainer {
+  background-color: #F6F6F6;
+  padding: 10px; }
+
+.statusArea {
+  margin: 2px 3px 0px 45px;
+  border-radius: 2px;
+  font-size: 0.85em; }
+
+.userStatus {
+  padding: 5px; }
+
+#userStatus {
+  width: 100%;
+  height: auto;
+  resize: none;
+  overflow: auto;
+  min-height: 48px; }
 
 .addStatus {
   background-color: #fff;

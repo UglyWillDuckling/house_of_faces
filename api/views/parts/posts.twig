@@ -4,11 +4,12 @@
                      <div class="userInfo">
                        <div class="userImage">                  
                          <img src=" 
-                            {% if post.userPic %}{{ post.userPic }}{% else %} {{ strap.baseUrl }}/public/images/default/defaultUser.png{% endif %}
+                            {% if post.userPic %}{{ strap.baseUrl }}/{{ post.userPic }}{% else %} {{ strap.baseUrl }}/public/images/default/defaultUser.png{% endif %}
                          " alt="userImage">                  
                        </div>
                        <div class="userName">
-                        <a href="{{ strap.baseUrl }}/profile?id={{ post.userId }}">{{ post.name }}</a>       
+                        <a href="{{ strap.baseUrl }}/profile?id={{ post.userId }}">{{ post.name }}</a>  
+                        <small> {{  post.creation|time_diff("now") }}</small>     
                        </div>
                      </div>                                      
                    <div class="post_content">
@@ -33,11 +34,17 @@
                           </button>
                        </div>
                    </div>
-                   <div class="comments" data-post="{{ post.ownId }}">
+
+<!--komentari-->            
+                   <div class="comments" data-contentid="{{ post.ownId }}">
+
                         {% for opinion in post.comments %}
                             <div class="opinion">
                               <div class="userImage">
-                                <img src="{% if opinion.userImage %}{{ opinion.userImage }}
+                                <img src="{% if opinion.userImage %}
+
+                                            {{ strap.baseUrl }}
+                                            {{ opinion.userImage }}
                                           {% else %} {{ strap.defaultUser }}  
                                           {% endif %}
                                 " alt="user image">
@@ -57,7 +64,7 @@
                                       <span></span>
                                     </button> 
                                     <button class="replyBtn" data-contentid="{{ opinion.ownId }}">reply</button> 
-                                    <span><small class="small">{{ opinion.creation }}</small></span>
+                                    <span><small>{{  opinion.creation|time_diff("now") }}</small>  </span>
                                  </div>
                               </div>
 
@@ -66,7 +73,9 @@
                                 {% for reply in opinion.replies %}
                                     <div class="reply">
                                       <div class="userImage">
-                                        <img src="{% if reply.userImage %}{{ reply.userImage }}
+                                        <img src="{% if reply.userImage %}
+                                                    {{ strap.baseUrl }}
+                                                    {{ reply.userImage }}
                                                   {% else %}{{ strap.baseUrl }}/public/images/default/defaultUser.png
                                                   {% endif %}" 
                                       alt="user image">
@@ -86,31 +95,37 @@
                                              <span></span>
                                            </button>
                                            <button class="replyBtn" data-contentId="{{ opinion.ownId }}">reply</button>
-   <!--doradi prikaz vremena-->           <span><small class="small">prije 2 sata</small></span>
                                         </div>
                                       </div>
                                     </div>
                                 {% endfor %}
-                            <!--reply na komentar-->    
+
+                  <!--reply na komentar-->    
                                 <div class="reply hide">
                                   <div class="userImage">
-                                    <img src="{% if user.userImage %}{{ strap.baseUrl }}{{ user.userImage }}
-                                              {% else %}{{ strap.baseUrl }}/public/images/default/defaultUser.png
-                                              {% endif %}" 
+                                    <img src="{% if strap.member.user_image %}
+                                    {{ strap.baseUrl }}/{{ strap.member.user_image }}
+                                    {% else %}{{ strap.baseUrl }}/public/images/default/defaultUser.png
+                                    {% endif %}" 
                                       alt="user image">
                                   </div>
                                   <div class="replyAreaContainer">                                    
                                     <textarea class="replyArea" data-contentid="{{ opinion.ownId }}" cols="30" rows="2" placeholder="reply"></textarea>
                                   </div>                                 
-                                </div>                              
+                                </div> 
+                  <!--reply na komentar-->                             
                               </div>
                             </div>
                         {% endfor %} 
+                  <!-- komentiraj post -->      
                         <div class="komentisi">
                           <div class="opinion">
                             <div class="userImage">
                               <img src="
-                              {% if user.picture %}{{ user.picture }}{% else %}{{ strap.baseUrl }}/public/images/default/defaultUser.png
+                              {% if strap.member.user_image %}
+                                {{ strap.baseUrl }}/{{ strap.member.user_image }}
+                              {% else %}
+                                {{ strap.baseUrl }}/public/images/default/defaultUser.png
                               {% endif %}" 
                               alt="user_picture">
                             </div>
@@ -119,7 +134,8 @@
                             </div>
                           </div>
                         </div>
-                   </div> 
+                  <!-- komentiraj post --> 
+                  </div> 
                </div> 
             {% endfor %}
             </div>

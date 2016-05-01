@@ -1,10 +1,15 @@
+
+$containerBackground: #F6F6F6;
+
+
 @import '../includes/posts/posts';
 @import '../includes/click/click';
-@import 'aside/aside';
+@import '../includes/aside/aside';
+@import '../includes/status/status';
 
   
     .mainContainer{
-        background-color: #E6E6E6;
+        background-color: $containerBackground;
         padding: 10px;
     }
 
@@ -27,12 +32,6 @@
          overflow: auto;
          min-height: 48px;
    } 
-
-   .statusBtn {
-    margin-top: 5px;
-    border-radius: 4px;
-    color: #112C5F;
-  }
 
    .addStatus{
 

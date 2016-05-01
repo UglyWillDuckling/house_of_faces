@@ -1,6 +1,7 @@
  
 
     window.onload = function(){
+
         var e = eventAssigner;
 
         e.currentLikeBtn = getById('currentImgLikeBtn'); //like button for the image being shown          
@@ -13,9 +14,9 @@
         e.commentArea = getById('pictureCommentArea');
 
         e.currentImage = getById('currentImage'); //the picture being currently shown
-        e.memberImage = getById('userImage').src; //the current users image
+        e.profileInteractions = getById('profileInteractions');
 
-
+    //adding the event listeners
         for(var i=0; i<eventAssigner.functions.length; i++)
         {
            eventAssigner.functions[i](); 

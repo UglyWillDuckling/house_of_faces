@@ -23,3 +23,12 @@ time: 1459453781 line: 14, in file C:\wamp\www\house_of_faces\api\functions\save
 time: 1459453834 line: 14, in file C:\wamp\www\house_of_faces\api\functions\saveImage.php, with message: error with the image upload.
 time: 1459526772 line: 66, in file C:\wamp\www\house_of_faces\api\routes\profile\addImage.php, with message: no picture with the upload.
 time: 1459545020 line: 71, in file C:\wamp\www\house_of_faces\api\routes\profile\addImage.php, with message: no picture with the upload.
+time: 1461944545 line: 8, in file C:\wamp\www\house_of_faces\api\functions\date_difference.php, with message: DateTime::__construct(): Failed to parse time string (1461944545) at position 8 (4): Unexpected character
+time: 1461944551 line: 8, in file C:\wamp\www\house_of_faces\api\functions\date_difference.php, with message: DateTime::__construct(): Failed to parse time string (1461944551) at position 8 (5): Unexpected character
+time: 1461944574 line: 8, in file C:\wamp\www\house_of_faces\api\functions\date_difference.php, with message: DateTime::__construct(): Failed to parse time string (1461944574) at position 8 (7): Unexpected character
+time: 1461944581 line: 8, in file C:\wamp\www\house_of_faces\api\functions\date_difference.php, with message: DateTime::__construct(): Failed to parse time string (1461944581) at position 8 (8): Unexpected character
+time: 1461944583 line: 8, in file C:\wamp\www\house_of_faces\api\functions\date_difference.php, with message: DateTime::__construct(): Failed to parse time string (1461944583) at position 8 (8): Unexpected character
+time: 1461944591 line: 8, in file C:\wamp\www\house_of_faces\api\functions\date_difference.php, with message: DateTime::__construct(): Failed to parse time string (1461944591) at position 8 (9): Unexpected character
+time: 1461944604 line: 8, in file C:\wamp\www\house_of_faces\api\functions\date_difference.php, with message: DateTime::__construct(): Failed to parse time string (1461944604) at position 8 (0): Unexpected character
+time: 1461944626 line: 9, in file C:\wamp\www\house_of_faces\api\functions\date_difference.php, with message: DateTime::__construct(): Failed to parse time string (1461944626) at position 8 (2): Unexpected character
+time: 1461944640 line: 8, in file C:\wamp\www\house_of_faces\api\functions\date_difference.php, with message: DateTime::__construct(): Failed to parse time string (1461944640) at position 8 (4): Unexpected character

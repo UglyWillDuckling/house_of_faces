@@ -44,7 +44,8 @@
                         $db->setTable('users');
 
                         $db->set([
-                            'cookie' => $nonce
+                            'cookie' => $nonce,
+                            'uniqueId' => $nonce
                         ],[
                             [
                                 'id', '=', $user['id']

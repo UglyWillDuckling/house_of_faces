@@ -3,21 +3,26 @@
 {% block title %}profile{% endblock %}
 
 {% block js %}       
-    <script src="{{ strap.baseUrl }}/api/javascript/functions/like.js"></script>    
-    <script src="{{ strap.baseUrl }}/api/javascript/functions/statusUpdate.js"></script> 
+    <script src="{{ strap.baseUrl }}/api/javascript/functions/like.js"></script>      
     <script src="{{ strap.baseUrl }}/api/javascript/functions/comments&amp;posts.js"></script>
 
-    <script src="{{ strap.baseUrl }}/api/javascript/functions/profile/controls.js"></script>         
+    <script src="{{ strap.baseUrl }}/api/javascript/functions/profile/controls.js"></script>
+    <script src="{{ strap.baseUrl }}/api/javascript/profile/addImage.js"></script> 
+    <script src="{{ strap.baseUrl }}/api/javascript/profile/friends.js"></script> 
+    <script src="{{ strap.baseUrl }}/api/javascript/profile/about.js"></script> 
+    <script src="{{ strap.baseUrl }}/api/javascript/profile/content.js"></script> 
+     
+
     <script src="{{ strap.baseUrl }}/api/javascript/profile/images.js"></script> 
     <script src="{{ strap.baseUrl }}/api/javascript/functions/little/makeThumb.js"></script> 
 
     <script src="{{ strap.baseUrl }}/api/javascript/profile/profile.js"></script> 
-
-    <script src="{{ strap.baseUrl }}/api/javascript/profile/addImage.js"></script> 
-    {% if strap.loggedIn %}
-<!--javascript za profil trenutnog korisnika--> 
-
-        {% endif %}  
+ 
+    {% if ownProfile %}
+        <!--javascript za profil trenutnog korisnika--> 
+        <script src="{{ strap.baseUrl }}/api/javascript/profile/changePhoto.js"></script>
+        <script src="{{ strap.baseUrl }}/api/javascript/functions/statusUpdate.js"></script> 
+    {% endif %}  
 
 {% endblock %}
         
@@ -32,15 +37,45 @@
         
         <div class="topContainer">
             <div class="profilePicture">
-                <img class="thumbnail" src="
-                {% if(user.userImage) %}{{ user.userImage }}
-                {% else %}{{ strap.baseUrl }}/public/images/default/defaultUser.png 
-                {% endif %}" alt="userImage">
+                <img id="profilePhoto" class="thumbnail" src="
+                {% if(user.user_image) %}
+                    {{ strap.baseUrl }}{{ user.user_image }}
+                {% else %}
+                    {{ strap.baseUrl }}/public/images/default/defaultUser.png 
+                {% endif %}" 
+                alt="userImage">
+
+                {% if ownProfile %}
+                    <div class="changePhoto">                       
+                        <a href="#" id="changePhotoBtn">
+                            <div class="overlay">                        
+                            </div>
+                            change photo
+                        </a>
+                    </div>
+                    
+                {% endif %}
             </div>
             <div class="backgroundContainer">
-              <h2 class="bigUserName">
+                <h2 class="bigUserName">
                   {{ user.name }} {{ user.last_name }}
-              </h2>      
+                {% if not ownProfile %}
+                    <div id="profileInteractions" data-userId="{{ user.id }}">
+                        {% if (user.friendshipStatus == 'friend') %}
+                            <button class="btn unfriendBtn" data-userId={{ user.id }}>unfriend</button>
+                         {% elseif (user.friendshipStatus == 'pending') %}
+
+                            <button id="acceptRequest" class="btn acceptRequestBtn" data-userId={{ user.user_id }}>accept</button>
+                            <button id="declineRequest" class="btn declineRequestBtn" data-userId={{ user.user_id }}>decline</button>
+
+                         {% elseif (user.friendshipStatus == 'sent') %}
+                            <small>request sent</small>
+                         {% else %}            
+                            <button class="btn sendRequestBtn profileRequest" data-userid="{{ user.id }}">send friend request</button> 
+                        {% endif %}
+                    </div> 
+                {% endif %}          
+                </h2>      
             </div>
             <div class="controlContainer">
                 <ul class="controlList">
@@ -59,18 +94,250 @@
             <input type="hidden" name="" id="user_id" value="{{ user.id }}">
 
             <div id="timelineContainer" class="content" data-link="timeline">
-                {% include 'parts/statusUpdate.twig' %}
+                {% if ownProfile %}
+                    {% include 'parts/statusUpdate.twig' %}
+                {% endif %}
+                
                 {% include 'parts/posts.twig' %}
             </div>
 
+<!--prikaz raznih inputa koji se koriste u slučaju da je ovo korisnikov profil-->
+    {% import "templates/macros/input.twig" as input %}
+
+<!--ABOUT-->
             <div id="aboutMeContainer" class="content noneDisplay" data-link="about">
-                about
-            </div>
+                <h3>Informacije</h3>
+                <hr>
+                <div class="infoContainer">
+                    <div class="sideInfo">
+                        <a href="" class="aboutBtn clicked" data-content="main">main information</a>
+                        <a href="" class="aboutBtn" data-content="contact">contact info</a>   
+                        <a href="" class="aboutBtn" data-content="ed">education and employment</a> 
+                        <a href="" class="aboutBtn" data-content="dodatno">dodatno</a>   
+                    </div>
+                    <div class="infoContent">
 
+                            <div id="mainInfo" class="info" data-content="main">
+                            {% if not ownProfile %}   
+                                {% if user.nickname %}
+                                    <div class="information">
+                                       <p>
+                                           Nickname: {{ user.nickname }}
+                                       </p>
+                                    </div>
+                                {% endif %}
+
+                                {% if user.country %}
+                                    <div class="information">
+                                        <h4>country: </h4><span>{{ user.country }}</span>
+                                    </div>
+                                {% endif %}
+
+                                {% if user.place %}
+                                    <div class="information">
+                                        <h4>place: </h4><span>{{ user.place }}</span>
+                                    </div>
+                                {% endif %}
+
+                                {% if user.college %}
+                                    <div class="information">
+                                        <h4>college:</h4><span>{{ user.college }}</span>
+                                    </div>
+                                {% endif %}
+
+                                {% if user.highschool %}
+                                    <div class="information">
+                                        <h4>highschool: </h4><span>{{ user.highschool }}</span>
+                                    </div>
+                                {% endif %}
+
+                                {% if user.company %}
+                                    <div class="information">
+                                        <h4>radi u: </h4><span>{{ user.company }}</span>
+                                    </div>
+                                {% endif %}
+
+                            {% else %}
+                                {{ input.text('nickname', 'nickname', user.nickname) }} 
+
+                        <!--stanovanje-->
+                                {{ input.select('country_id', 'country', user.country_id, content.countries, 'countries') }}
+                                {{ input.select('place_id', 'place', user.place_id, content.places, 'places') }}  
+                        
+                        <!--posao-->
+                                {{ input.select('zanimanje_id', 'zanimanje', user.zanimanje_id, content.zanimanja, 'zanimanje', 'prvo_zanimanje') }}  
+                                {{ input.select('company_id', 'company', user.company_id, content.companies, 'companies') }}  
+                             {% endif %}
+                            </div><!--\mainInfo-->     
+
+                            <div class="info noneDisplay" data-content="contact">
+
+                            {% if not ownProfile %} 
+                                {% if user.cellphone %}
+                                    <div class="information">
+                                        <h4>Cellphone number:</h4><span>{{ user.cellphone }}</span>
+                                    </div>
+                                {% endif %}
+
+                                {% if user.phone %}
+                                     <div class="information">
+                                        <h4>phone number:</h4><span>{{ user.phone }}</span>
+                                    </div>
+                                {% endif %}
+
+                                {% if user.address %}
+                                    <div class="information">
+                                        <h4>address:</h4><span>{{ user.address }}</span>
+                                    </div>
+                                {% endif %}
+
+                             {% else %}
+
+                                {{ input.text('address', 'address', user.address) }}  
+                                {{ input.text('cellphone', 'cellphone', user.cellphone) }} 
+                                {{ input.text('phone', 'phone', user.phone) }}   
+                             {% endif %}                                                   
+                            </div>
+
+                            <div class="info noneDisplay" data-content="ed">
+                            {% if not ownProfile %} 
+                                {% if user.company %}
+                                    <div class="information">
+                                        <h4>radi u :</h4><span>{{ user.company }}</span>
+                                    </div>
+                                {% endif %}
+
+                                {% if user.zanimanje %}
+                                    <div class="information">
+                                        <h4>zanimanje :</h4><span>{{ user.zanimanje }}</span>
+                                    </div>
+                                {% endif %}
+
+                                {% if user.highschool %}
+                                    <div class="information">
+                                        <h4>highschool: </h4><span>{{ user.highschool }}</span>
+                                    </div>
+                                {% endif %}
+
+                                {% if user.college %}
+                                    <div class="information">
+                                        <h4>college:</h4><span>{{ user.college }}</span>
+                                    </div>
+                                {% endif %}
+                            {% else %}
+
+                                {{ input.select('zanimanje_id', 'zanimanje', user.zanimanje_id, content.zanimanja, 'zanimanje') }}
+                                {{ input.select('school_id', 'school', user.school_id, content.schools, 'schools') }}
+                                {{ input.select('college_id', 'college', user.college_id, content.colleges, 'colleges') }}
+                            {% endif %}
+                            </div>
+
+                    <!--dodatno-->
+                            <div class="info noneDisplay" data-content="dodatno">
+                            {% if not ownProfile %} 
+                                {% if user.favorite_movie %}
+                                    <div class="information">                                        
+                                        <h4>favorite movie:</h4><span>{{ user.favorite_movie }}</span>
+                                    </div>
+                                    
+                                {% endif %}
+
+                                {% if user.favorite_show %}
+                                    <div class="information">                                        
+                                        <h4>favorite show:</h4><span>{{ user.favorite_show }}</span>
+                                    </div>
+                                {% endif %}
+                                {% if user.quote %}
+                                    <h4>favorite quote:</h4><span>{{ user.quote }}</span>
+                                {% endif %}
+
+                            {% else %}
+                                                          
+                                {{ input.select('favorite_show', 'favorite show', user.show_id, content.shows, 'shows') }}
+                                {{ input.select('favorite_movie', 'favorite movie', user.movie_id, content.movies, 'movies') }}
+                                {{ input.select('favorite_song', 'favorite song', user.song_id, content.songs, 'songs') }}
+            
+                            {% endif %}
+                            </div>
+                    </div>
+                </div>
+                <div id="addContainer" class="addContainer noneDisplay">     
+                    <h4>Ovdje unesite novu vrijednost za odabranu kategoriju:</h4>     
+                    <input id="add" class="form-control" type="text" data-info="">
+                    <button id="addBtn" class="btn addBtn">add</button>
+                    <span id="closeAdd" class="closeCarr">&times;</span>
+                </div>
+            </div>
+<!--Controls-->
             <div id="FriendsContainer" class="content noneDisplay" data-link="friends">
-                friendOfMine
-            </div>
+                <div class="controls friendControls">
+                    <ul class="controlList">
+                        <li><a href="#" class="control friendControl clicked" data-field="all" id="allFriendsBtn">friends</a></li>
 
+                        {% if ownProfile %}
+                        <li><a href="#" class="control friendControl" id="friendRequestsBtn" data-field="requests">friend requests</a></li>
+                        {% else %}
+                        <li><a href="#" class="control friendControl" id="commonFriendsBtn" data-field="common">common friends</a></li> 
+                        {% endif %}
+                    </ul>    
+                </div>
+
+<!--FRIENDS-->
+                <div id="allFriends" class="friendsAll friendField" data-field="all">     
+                
+                   {% for friend in friends %}
+                    <div class="littleUser">
+                        <img src="{{ friend.userImage }}" alt="">
+                        <div class="userInfo">
+                            <div class="userName">
+                                <a 
+                                href="{{ strap.urlZa('profile') }}?id={{ friend.user_id}}">{{ friend.username }}
+                                </a>
+                            </div>
+                            {% if not(ownProfile) %}
+                                <div class="note">                               
+                                    {% if friend.commonFriend %}
+                                            common friend       
+                                    {% elseif friend.pending %}
+                                       friend request pending
+                                    {% else %}                                      
+                                        <button class="btn sendRequestBtn" data-userid="{{ friend.user_id }}">
+                                         send a friend request
+                                        </button>   
+                                    {% endif %}
+                                </div>
+                           {% endif %}
+                        </div>
+                    </div>
+                   {% endfor %}
+                </div>
+                {% if ownProfile %}
+                    <div class="profileRequests friendField noneDisplay" data-field="requests">
+                        {% if requests %}
+                            you have requests
+                        {% else %}
+                            you have no pending requests for now.
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <div id="commonFriends" class="friendField noneDisplay" data-field="common">
+                        {% if commonFriends %}
+                            {% for friend in commonFriends %}
+                                  <div class="littleUser">
+                                    <img src="{{ friend.userImage }}" alt="">
+                                    <div class="userInfo">
+                                        <div class="userName">
+                                            <a 
+                                            href="{{ strap.urlZa('profile') }}?id={{ friend.user_id}}">{{ friend.username }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                  </div>
+                            {% endfor %}   
+                        {% endif %}                      
+                    </div>
+                {% endif %}
+            </div>
             <div id="PicturesContainer" class="content noneDisplay" data-link="pictures">
                 <div id="thumbs" class="thumbs">
 
@@ -130,16 +397,38 @@
 
                     <span id="closeCarrousel" class="interactive closeCarr">&times;</span>    
                 </div> 
-
-                <div class="addImageContainer">
-                    <div class="add">
-                        <button id="addImageBtn" class="addImageBtn btn">
-                            add new image
-                        </button>
+                
+                {% if ownProfile %}
+                    <div class="addImageContainer">
+                        <div class="add">
+                            <button id="addImageBtn" class="addImageBtn btn">
+                                add new image
+                            </button>
+                        </div>
+                        <input type="file" name="newImage" id="newImageFile" class="noneDisplay">
                     </div>
-                    <input type="file" name="newImage" id="newImageFile" class="noneDisplay">
-                </div>
+                {% endif %}
             </div>          
         </div>
+    </div>
+
+
+<!--mjenjanje slike profila-->
+
+    <div id="changePhotoContainer" class="noneDisplay">
+        <h4>Odaberite novu sliku profila: </h4>
+
+        <div class="thumbs">
+            {% for pic in userPics %}
+                <div class="userThumb changeThumb" data-picid="{{ pic.picture_id }}">
+                    <div class="overlay"></div>
+                    <img src="{{ strap.baseUrl }}/{{ pic.path }}" alt="userpicture-{{ pic.path }}">                                          
+                </div>                
+            {% endfor %}
+        </div>
+        <div class="buttons">
+            <button id="chooseUserPhotoBtn" class="btn">change</button>
+            <button id="closeChangePhoto" class="btn">close</button>
+        </div>      
     </div>
 {% endblock %}

@@ -7,7 +7,10 @@
           <span class="noneDisplay" id="username">{{ user.name }}</span>
           <div class="userImage">
             <img id="userImage" src="
-            {% if user.picture %}{{ user.picture }}{% else %}{{ strap.baseUrl }}/public/images/default/defaultUser.png
+            {% if strap.member.user_image %}
+                {{ strap.baseUrl }}/{{ strap.member.user_image }}
+            {% else %}
+                {{ strap.baseUrl }}/public/images/default/defaultUser.png
             {% endif %}
             " alt="userImage">
             </div>

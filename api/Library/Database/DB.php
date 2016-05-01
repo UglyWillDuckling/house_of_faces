@@ -78,7 +78,7 @@
                 . " " . $condition
             ;
 
-            //echo $sql . "<hr>";die;
+        echo $sql . "<hr>";
 
             $sth = $this->prepare($sql);
 
@@ -167,7 +167,7 @@
 
 
         /**
-         * dodavanje novog redu u tablicu
+         * dodavanje novog reda u tablicu
          * @param [type] $row [description]
          */
         public function add($row, $noBindingColumns = array()){
@@ -260,12 +260,12 @@
     }#\set()
 
 
-    /**
-     * brisanje stupca iz baze podataka
-     * @param  [QueryObject] $rules objekt tipa QueryObject, pomoću njega
-     *                              stvaramo where klauzulu
-     * @return [object] $this       vraćamo sam db objekt              
-     */
+        /**
+         * brisanje stupca iz baze podataka
+         * @param  [QueryObject] $rules objekt tipa QueryObject, pomoću njega
+         *                              stvaramo where klauzulu
+         * @return [object] $this       vraćamo sam db objekt              
+        */
         public function delete($query){
 
             $rules = $query->rules;
@@ -370,7 +370,7 @@
             $condition = "";
              foreach($conds as $cond)
             {
-                $condition .= $cond[0] . " " . $cond[1] . " ";
+                $condition .= $cond . " ";
             }
 
             return $condition;

@@ -1,14 +1,14 @@
-     @import '../includes/posts/posts';
-     @import '../includes/status/status'; //status koristi $imageWidth varijablu def. u 'posts.scss'
-     @import '../includes/search/search'; 
-     @import '../includes/click/click'; 
+    @import '../includes/posts/posts';
+    @import '../includes/status/status'; //status koristi $imageWidth varijablu def. u 'posts.scss'
+    @import '../includes/search/search'; 
+    @import '../includes/click/click'; 
+    @import 'images'; 
+    @import 'friends'; 
+    @import 'about'; 
+   
 
-
-     $backHeight : 75%;
-     $imgHeight: 46em;
-     $imgWidth: 55em;
-     $arrowOffset: 50px;//offsets for the image arrows
-
+    $backHeight : 75%;
+     
     .topContainer{
 
         height: 210px;
@@ -18,6 +18,7 @@
     .profilePicture{
 
         width: 150px;
+        position: relative;
         float: left;
         top: 20px;
         margin-top: 41px;
@@ -25,7 +26,11 @@
 
         img{
             width: 100%;
+            height: 15.6rem;
+        }
 
+        .thumbnail{
+            margin-bottom: 0;
         }
     }
 
@@ -42,6 +47,10 @@
         display: inline-block;
         margin-top: 15%;
         margin-left: 10px;
+
+        button{
+            padding-bottom: 0;
+        }
     }
 
     .controlContainer{
@@ -70,231 +79,131 @@
         }
     }
 
-    .contentContainer{
-
+    .contentContainer
+    {
         padding: 10px;
         border: 1px solid #C3C2C2;
         margin-top: 10px;
-        background: #EAEAEA;
     }
 
+//CHANGE PHOTO
 
-    #PicturesContainer
-    {
-    padding-bottom: 5px;
-    }
-
-    .userThumb{
-        width: 19.5%;
-        height: 7.5em;
-        position: relative;
-
-        display: inline-block;
-        overflow: hidden;
-
-        padding-right: 0;
-
-        margin-bottom: 6px;
-
-        img{
-            width: 100%;
-        }
-
-        &:hover .deleteBtn{
-
-            //show the delete button
-            display: block;    
-        }
-    }
-
-
-
-/********              *********
-    PRIKAZ TRENUTNE SLIKE 
-/********             *********/
-
-    #imgCarrousel{
-
+    #changePhotoContainer{
         position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 100000;
-        background: black;
+        z-index: 11;
 
-        width: 100%;
-        height: 100%;
+        top: 150px;
+        left: 300px;
 
-        .pictureContainer
-        {
-            width: 80%;
-            height: 600px;
-            margin-top: 100px;
-            margin-left: 200px;
-        }
+        width: 70rem;
 
 
-        .comments
-        {
-            display: inline-block;
-            width: 25em;
-            min-height: $imgHeight;
+        background: #fff;
+        padding: 10px;
+        border: 1px solid #E6DCDC;
+        box-shadow: 2px 2px 0px #F8F8F8;
 
-            background: white;          
-            padding: 10px;
-            margin-left: 10px;
+        .userThumb{
 
-            h4{
-                font-weight: 600;
-                color: #5A5A5A;
-            }
-        }
+            height: 9rem;
+            width: 20%;
 
-        .userPicture{
-            position: relative;
-
-            width: $imgWidth;
-            height: $imgHeight;
-            display: inline-block;
-            float: left;
-
-            img{
-                width: 100%;
-                height: 100%;
-            }
-
-            &:hover{
-                #currentImgLikeBtn{
-                    display: block;
-                }
-            }
-        }
-
-        .interactive{
             &:hover{
                 cursor: pointer;
-                color: white;
             }
         }
 
-  //znak x, za zatvaranje prikaza slike
-        .closeCarr{
-            position: absolute;
-            font-size: 3em;
-            color: #A0A0A0;        
-        }
-
-
-        #closeCarrousel{
-            top: 0;
-            right: $arrowOffset;
-        }
-
-        .opinion textarea{//odredujemo sirinu textarea za davanje komentara
-            width: 90%;    
-        }
-
-        .arrow{
-            position: absolute;
-            top: 16em;
-            z-index: 10;
-
-            color: #A0A0A0; 
-            font-size: 1.7em;
-        }
-
-        .arrowLeft{
-            left: $arrowOffset;
-        }
-
-        .arrowRight{
-
-            right: $arrowOffset;
-        }
-    }
-
-    #currentImgLikeBtn
-    {    
-        position: absolute;
-        bottom: 11px;
-        right: 14px;
-
-        font-size: 1.5em;
-        padding: 5px 19px 7px 19px;
-        background: rgba(0, 0, 0, 0.76);
-        color: #A8A4A4;
-
-        vertical-align: middle;
-        border-radius: 5px;
-        
-        &:hover{
-            color: #E6E2E2;
-        }
-    }
-
-
-//NOVA SLIKA
-    
-    #newImageFile
-    {
-    display: none; 
-    }
-
-    .addImageContainer{
-        margin-top: 8px;
-        margin-bottom: 2px;
-
-        background: white;
-        padding: 7px 0;
-        border-radius: 4px;
-
-
-        .add{
+        h4{
             text-align: center;
+            color: #605A5A;
+            font-style: italic;
+
         }
     }
 
-    .addImageBtn{
-        background: #2085DD;
+    .buttons{
+        margin-top: 15px;
+        color: white;
+    }
 
-        font-size: 1.25em;
-        padding: 6px 16px;
-
-        color: white !important;
+    #closeChangePhoto{
+        float: right;
+        background: #AE144F;
 
         &:hover{
-            background: #3A90DD;
-            color: white;
+            color: #FF005C;
         }
     }
 
+    #chooseUserPhotoBtn{
+        float: left;
+        background: #596BC3;
 
-    /****delete image *****/
+    }
 
-    .deleteBtn{
+    #chooseUserPhotoBtn.chosen{
+        background-color: #062CE2;
+        color: #A6C7F2;
+    }
 
-        position: absolute;
-        top:3px;
-        right: 2px;
-
-        display: none;    
-        padding: 2px 8px;
-        border-radius: 5px;
-
-        color: white;
-        background: rgb(25, 23, 23);
-
-        font-size: 0.8em;
+    .selected{
 
         .overlay{
+            background:white;
 
-            left: 0;
-            background: black;
-            opacity: 0.5;
-            border-radius: 6px;
-        }
-        
-        &:hover .overlay{
-            display: none;
+            opacity: 0.6;
         }
     }
-        
+
+    #profileInteractions{
+    
+        display: inline-block;
+
+        .sendRequestBtn{
+            color: #5580FF;
+            border: 1px solid #3A3A3D;
+
+            &:hover{
+                color: #3B61D1;
+                background: #151922;
+            }
+        }
+    }
+
+    .acceptRequestBtn:hover{
+        color: #679EFF;
+    }
+
+    .declineRequestBtn:hover{
+        color: #5E5F62;
+
+    }
+
+    .littleNumber
+    {
+        display: inline-block;
+        width: 1.4em;
+
+        font-weight: 600;
+        text-align: center;
+        font-size: 1.05em;
+
+        border-radius: 49px;
+        background: #FFFFFF;
+        color: #000;
+    }
+
+    .controlList .clicked{
+        background: #337AB7;
+        color: white;
+
+        &:focus{
+            text-decoration: none;
+        }
+    }
+
+    .controlLink{
+        padding: 3px;
+        border-radius: 3px;
+    }
+    

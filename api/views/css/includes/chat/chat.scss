@@ -1,0 +1,202 @@
+
+    $chatImageWidth: 40px;
+    $talk-height: 451px;
+    
+
+    #chatContainer{
+
+        position: fixed;
+     
+        right: 150px;
+        bottom: 5px;
+
+        background: #F8F8F8;
+
+    }
+    #chatBox{
+
+        width: 300px;
+
+        h4.title{
+
+            margin-top: 0;
+            background: #438BFC;
+            color: white;
+            padding: 5px;
+            text-align: center;
+
+        }
+    }
+
+    #showChat{
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    .chat-list{
+        
+        min-height: 200px;
+        padding: 10px;
+
+        .chat-user{
+            padding: 5px;
+        }
+
+
+        .chat-user:hover{
+            background: white;
+
+        }
+        .chat-user.clicked{
+
+            background: white;
+            color: #645A5A;
+
+            h4{
+                color: #645A5A;      
+            }
+        }
+    }
+
+    #chatAnimationWrapper{
+        height: 0;
+        overflow: hidden;
+
+        -webkit-transition: height 0.73s;
+
+        &.visible{
+          height: 200px;    
+        }
+    }
+
+    .chat-user{
+
+        margin-bottom: 5px;
+        height: $chatImageWidth;
+        box-sizing: content-box;
+
+        color: #62B1F2;
+
+        img{
+            float: left;
+            width: $chatImageWidth;
+            height: $chatImageWidth;
+            margin-right: 5px;
+        }
+
+        h5, h4{
+            display: inline-block;       
+            margin-top: 0;
+        }
+        &:hover{
+            cursor: pointer;
+        }
+
+        &.active::after{
+
+            content: "\25cf";
+            font-size: 1.5em;
+
+            float: right;
+
+            color: green;
+        }
+    }
+
+
+
+    #chat-talk
+    {
+        position: absolute;
+        max-height: $talk-height;
+        bottom: 0;
+        left: -350px;
+        width: 340px;
+
+        background: #F4F4F4;
+        padding: 20px 20px 10px 10px;
+        padding-top: 25px;
+
+        border: 1px solid #E1E1E1;
+        box-shadow: 0px 0px 2px 0px grey;
+
+
+        .message{
+            padding: 3px;
+            background: white;
+
+            margin-bottom: 5px;
+
+            border-radius: 4px;
+
+            word-wrap: break-word;
+
+            h4{
+                display: none;
+            }
+        }
+
+        .message-content{
+            color: grey;
+            display: inline-block;
+        }
+
+        .close{
+            position: absolute;
+            top: 1px;
+            right: 5px;
+
+            font-size: 1.7em;    
+
+            color: grey;
+            
+            &:hover{
+                color:  black;
+                border-radius: 6px;  
+
+                  
+            }
+
+        }
+    }
+
+    #chat-messages{
+        max-height: $talk-height*0.8;
+        overflow-y: scroll;
+        margin-bottom: 10px;
+
+        .chat-user{
+            display:inline-block;
+        }
+
+    }
+
+    .respondWrap{
+        max-height: $talk-height/5;  
+    }
+
+    #messageArea{
+        width: 100%;
+        height: 100%;
+        resize: none;
+    }
+
+     #showChat{
+        border-radius: 5px;
+
+     }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}

@@ -1,5 +1,5 @@
 
-     function replyRequest(answer, id, daNe){
+     function replyRequest(answer, id, daNe, userid){
 
         var link = "http://127.0.0.1/house_of_faces/interact/request";
         var form = new FormData();
@@ -16,6 +16,15 @@
                 //delete the request               
                 daNe.innerHTML = answer ? 'accepted' : 'declined';
                 updateRequestNumber();
+
+            //this part is for the profile page only    
+                var interactions = getById('profileInteractions');
+
+                if(interactions.getAttribute('data-userid') == userid){
+                    interactions.innerHTML = 
+                        answer ? '<small>request accepted</small>' : '<small>request declined</small>'
+                    ;
+                }
             }
         });
      };
@@ -71,7 +80,8 @@
             requestBs[i].onclick = function(e){ 
 
                 var yesNo = this.parentNode;
-                var requestId = yesNo.getAttribute('data-id');
+                var requestId = this.getAttribute('data-id');
+                var userId = this.getAttribute('data-userid');
                 var type;
 
                 if(this.className.indexOf('acceptRequest') !== -1){//ako je gumb klase 'acceptRequest'
@@ -81,7 +91,7 @@
                     type=0;
                 }
 
-                replyRequest(type, requestId, yesNo);//odgovoramo na zahtjev za prijateljstvo
+                replyRequest(type, requestId, yesNo, userId);//odgovoramo na zahtjev za prijateljstvo
             }
         }
      });

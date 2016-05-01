@@ -1,7 +1,26 @@
 
+    var deleteImage = function (e) 
+    {
+        var link = 'http://127.0.0.1/house_of_faces/profile/deleteImage';
+        var form = new FormData;
+
+        var id = e.target.getAttribute('data-picid');
+
+        console.log(id);
+
+        form.append('id', id);
+
+        ajax(link, form, removeImage(id));    
+    }
+
+    function removeImage(id)
+    {
+        var thumb = document.querySelector('.userThumb[data-picid="' + id + '"]');
+        thumb.remove();
+    }
+
     function showImage(thumb, commentContainer, commentArea, image)
     {
-
         var id = thumb.getAttribute('data-picid');
 
         var prevThumb = thumb.previousElementSibling;        
@@ -131,7 +150,6 @@
             });
         }
 
-        
        
         for(var i=0; i <chevrons.length; i++){
 
@@ -177,28 +195,4 @@
         for(var i=0; i<deleteBtns.length; i++){
             deleteBtns[i].addEventListener('click', deleteImage);
         }         
-    });
-
-
-    var deleteImage = function (e) 
-    {
-        var link = 'http://127.0.0.1/house_of_faces/profile/deleteImage';
-        var form = new FormData;
-
-        var id = e.target.getAttribute('data-picid');
-
-        console.log(id);
-
-        form.append('id', id);
-
-        ajax(link, form, removeImage(id));    
-    }
-
-
-    function removeImage(id){
-
-        var thumb = document.querySelector('.userThumb[data-picid="' + id + '"]');
-
-
-        thumb.remove();
-    }
+    });//addListener()

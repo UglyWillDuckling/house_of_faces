@@ -58,7 +58,7 @@
                 </ul>
               {% else %}
                 <ul class="nav navbar-nav member_list">
-                    <li><a href="{{ strap.baseUrl }}/profile?id={{ user.id }}" class="member_link">profil</a></li>
+                    <li><a href="{{ strap.baseUrl }}/profile?id={{ strap.member.id }}" class="member_link">profil</a></li>
                     <li><a href="{{ strap.baseUrl }}/auth/logout" class="member_link">logout</a></li>
                     <li class="requestItem">
                         <a id="friendAnchor" href="#" class="member_link">friendRequests
@@ -74,22 +74,24 @@
                               <div class="userInfo">
                                 <div class="userName">
                                   {% if r.nickname %} {{ r.nickname }}
-                                  {% else %} {{ r.username }}
+                                  {% else %}          {{ r.username }}
                                   {% endif %}
                                 </div>            
-                              <div class="da-ne" data-id="{{ r.request_id }}">
-                                <button class="acceptRequest requestBtn">
-                                  <div class="overlay"></div>
-                                  <i class="glyphicon glyphicon-ok"></i>accept</button>
-                                <button class="declineRequest requestBtn">
-                                  <div class="overlay"></div>
-                                  <i class="glyphicon glyphicon-remove"></i>decline</button>
+                                <div class="da-ne" data-id="{{ r.request_id }}">
+                                  <button class="acceptRequest requestBtn" data-id="{{ r.request_id }}" data-userid="{{ r.user_id }}">
+                                    <div class="overlay"></div>
+                                    <i class="glyphicon glyphicon-ok"></i>accept
+                                  </button>
+                                  <button class="declineRequest requestBtn" data-id="{{ r.request_id }}" data-userid="{{ r.user_id }}">
+                                    <div class="overlay"></div>
+                                    <i class="glyphicon glyphicon-remove"></i>decline
+                                  </button>
+                                </div>
                               </div>
                             </div>
                           {% endfor %}                         
                         </div>
-                    </li>
-                    
+                    </li>                   
                 </ul>
               {% endif %}
 <!--drop down menu tek treba napraviti-->

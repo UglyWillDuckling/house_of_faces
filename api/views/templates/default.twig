@@ -23,6 +23,7 @@
 
 <!-- osnovni css koji se koristi na svakoj stranici -->
     <link href="{{ strap.baseUrl }}/api/views/css/basic.css" rel="stylesheet">
+    <link href="{{ strap.baseUrl }}/api/views/css/includes/chat/chat.css" rel="stylesheet">
 
 <!-- blok za potrebne stylesheete -->
     {% block customCss %} 
@@ -31,9 +32,10 @@
   </head>
     <body>
 
-      <div id="clickDiv" class="noneDisplay">
-        
+      <div id="clickDiv" class="noneDisplay">  
       </div>
+
+      <input id="identifier" type="hidden" value="{{ strap.member.uniqueId }}">
 
       {% include 'templates/includes/navigation/navigation.twig' %}
      
@@ -48,14 +50,61 @@
           {% block main_content %}
 
           {% endblock %}
-          
+
+<!--chat-->
+          <div id="chatContainer">
+            <div id="chatBox">
+              <h4 id="showChat" class="title">chat</h4>
+              <div id="chatAnimationWrapper">
+                
+                <div class="chat-list">
+                </div>
+              </div>
+            </div>
+
+            <div id="chat-talk" class="noneDisplay">
+              <div id="chat-messages">
+              </div>
+
+              <div class="respondWrap">
+
+                <div class="opinion">
+                  <div class="userImage">
+                    <img src="
+                    {% if strap.member.user_image %}
+                      {{ strap.baseUrl }}/{{ strap.member.user_image }}
+                    {% else %}
+                      {{ strap.baseUrl }}/public/images/default/defaultUser.png
+                    {% endif %}" 
+                    alt="user_picture">
+                  </div>
+                  <div class="commentInfo">
+                    <textarea id="messageArea" class="messageArea" placeholder="chat..."></textarea>
+                  </div>
+                </div>
+
+                <!--
+                <textarea id="messageArea" cols="30" rows="10" class="messageArea"></textarea>
+                -->
+              </div>
+
+              <span id="closeTalk" class="close">&times;</span>
+
+            </div>
+          </div>
+<!--chat-->
+       
           {% block footer %}
             <div class="col-sm-10 footer">
               footer
             </div>
           {% endblock %}
          <!--footer-->   
-        </div>   
+        </div>  
+
+        <div id="time">
+          
+        </div> 
 
          <!--osnovne funkcije za javascript-->
          <script src="{{ strap.baseUrl }}/api/javascript/functions/basic/assignListener.js"></script>
@@ -75,7 +124,14 @@
 
          <script src="{{ strap.baseUrl }}/api/javascript/functions/interact/friendRequests.js"></script>     
          <script src="{{ strap.baseUrl }}/api/javascript/functions/interact/find.js"></script>     
-         <script src="{{ strap.baseUrl }}/api/javascript/functions/interact/getPicture.js"></script>     
+         <script src="{{ strap.baseUrl }}/api/javascript/functions/interact/getPicture.js"></script>  
+
+        <!--CHAT-->      
+          <script src="http://127.0.0.1:8080/socket.io/socket.io.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.10/buzz.min.js"></script>
+
+          <script src="{{ strap.baseUrl }}/api/javascript/chat/chat.js"></script>
+        <!--CHAT-->     
           {% block js %} 
             
           {% endblock %}

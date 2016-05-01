@@ -30,16 +30,21 @@
    $strap->db_error_log = DB_ERROR_LOG;
 
    $strap->defaultUserImage = $strap->baseUrl . DEFAULT_USER_IMAGE;
+   $strap->javascript = $strap->baseUrl . "/api/javascript/";
    
 /**
-     * inicijalizacija twig objekta i postavljanje istoga kao 'view' u $boot objektu 
-     * U aplikaciji ga koristimo pri renderiranju sadržaja
+     * inicijalizacija twig objekta i postavljanje istoga kao 'view' u $strap objektu 
+     * U aplikaciji se koristi za  renderiranje sadržaja
 */
     $strap->setView( VIEW_FOLDER, function($view_folder) {
         
         $loader   = new Twig_Loader_Filesystem($view_folder);   
         $twig     = new Twig_Environment($loader);
         
+        $diffFilter = new Twig_SimpleFilter('time_diff', "date_difference");
+        $twig->addFilter($diffFilter);
+
+
         return $twig;
     }); 
     // postavljanje objekta 'Twig' klase za view

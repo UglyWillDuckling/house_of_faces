@@ -35,7 +35,7 @@
         $db->setTable('pictures');// ...and then in the pictures table
         $db->add([
             'user_id'    => $id,
-            'path'       => $relative_path,
+            'path'       => "/" . $imgName,//we only store the random name of the image
             'content_id' => $db->lastInsertId()
 
         ], [

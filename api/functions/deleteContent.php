@@ -2,10 +2,30 @@
     use Tricky\helpers\QueryObject\QueryObject;
 
 
-    function deleteContent($content_id, $db){
+    function deleteContent($content_id, &$db){
 
         $q = new QueryObject;
+        deleteComments($content_id, $db, $q);
+
+
+        $db->setTable('content');
+        $q->clearRules();
+
+        $q->setRule(['id', '=', $content_id]);
+        $db->delete($q);//we delete the content in the 'content' table
+    }
+
+    /**
+     * [deleteComments description]
+     * @param  [type] $content_id [description]
+     * @param  [type] &$db        [description]
+     * @param  [type] &$q         [description]
+     * @return [type]             [description]
+     */
+    function deleteComments($content_id, &$db, &$q)// &-pass by refernce
+    {      
         $db->setTable('comments');
+        $q->clearRules();
         
         $q->setRule(['content_id', '=', $content_id], 'id');
 
@@ -19,26 +39,16 @@
             $ids[] = $c['own_content_id'];
         }
 
-        deleteComments($ids, $db, $q);
+        deleteReplies($ids, $db, $q);//deleting replies for all the comments
 
+
+    //deleting the comments themselves
         $db->setTable('content');
         $q->clearRules();
 
-        $q->setRule(['id', '=', $content_id]);
-        $db->delete($q);//we delete the content in the 'content' table
-    }
+        $q->setRule(['id', 'IN', $ids]);
 
-
-    function deleteComments($contentIds, $db, $q)
-    {
-        $db->setTable('content');
-        $q->clearRules();
-
-        $q->setRule(['id', 'IN', $contentIds]);
-
-        $db->delete($q);//deleting the comments in 'content' table(foreign key 'comments' table)
-
-        deleteReplies($contentIds, $db, $q);
+        $db->delete($q);//deleting the comments in 'content' table(foreign key 'comments' table)        
     }
 
 
@@ -49,12 +59,12 @@
      * @param  [type] $q          [description]
      * @return [type]             [description]
      */
-    function deleteReplies($contentIds, $db, $q){
+    function deleteReplies($contentIds, &$db, &$q){
         $q->clearRules();
         $db->setTable('content');
 
 
-
+    //first we find the replise corresponding to the give comments...
         $db->setTable('replies');
         $q->setRule(['content_id' 'IN', $contentIds]);
 
@@ -63,13 +73,16 @@
         $replies = $db->getAll();
 
 
+    //...then we get their id-s    
         $repIds = array();
         foreach($replies as $rep){
             $repIds[] = $rep['own_content_id'];
         }
 
 
-        $q->setRule('id', 'IN', $repIds);
+        $q->clearRules();
 
+    //...and finally we delete them
+        $q->setRule(['id', 'IN', $repIds]);
         $db->delete($q);
     }

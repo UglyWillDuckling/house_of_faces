@@ -1,7 +1,8 @@
 /** modifikacije izgleda osnovnih html elemenata **/
 body {
   font-family: 'Source Sans Pro', sans-serif;
-  color: #fff; }
+  color: #fff;
+  font-size: 1.3em; }
 
 label {
   color: white; }
@@ -17,6 +18,16 @@ ul {
 
 button {
   background: none; }
+
+li {
+  list-style-type: none; }
+
+li a {
+  display: inline-block;
+  width: 100%; }
+
+small {
+  font-size: 90%; }
 
 /** modifikacije izgleda osnovnih html elemenata **/
 

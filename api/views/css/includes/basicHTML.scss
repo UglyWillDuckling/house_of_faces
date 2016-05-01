@@ -5,6 +5,8 @@
     {
         font-family: 'Source Sans Pro', sans-serif;
         color: #fff;
+
+        font-size: 1.3em;
     }
 
      label{
@@ -38,5 +40,10 @@
 
     li a{
         display: inline-block;
+        width: 100%;
+    }
+
+    small{
+        font-size: 90%;
     }
 /** modifikacije izgleda osnovnih html elemenata **/ 

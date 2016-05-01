@@ -12,17 +12,27 @@
 
    #userStatus{
 
-         width: 100%;
-         height: auto;
-         resize: none;
-         overflow: auto;
-         min-height: 48px;
+       width: 100%;
+       height: auto;
+       resize: none;
+       overflow: auto;
+       min-height: 48px;
    } 
 
    .statusBtn {
     margin-top: 5px;
     border-radius: 4px;
-    color: #112C5F;
+
+    font-family: cursive;
+
+    color: grey;
+    font-weight: 600;
+    /* font-style: italic; */
+    font-size: 1.2em;
+
+    &:hover{
+      color: #605B5B;
+    }
   }
 
    .addStatus{

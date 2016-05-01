@@ -3,8 +3,10 @@
 
     eventAssigner.addListener('controls', function(){
     
-        var controls =  getByClass('controlLink');
-        var content = getByClass('content');
+        var controls =  getByClass('controlLink'),
+            content = getByClass('content'),
+            selected = controls[0];
+
 
         var currentContent = content[0];
 
@@ -12,7 +14,14 @@
 
             controls[i]['number'] = i;
 
+
             controls[i].addEventListener('click', function(){
+
+                selected.classList.remove('clicked');
+
+                this.classList.add('clicked');
+                selected = this;
+
 
                 var link = this.getAttribute('data-link');
                 
